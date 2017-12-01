@@ -1,0 +1,20 @@
+{
+  "name": "dev-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/talentui/dev-server.git",
+  "author": "Raymond Li <it1011@qq.com>",
+  "license": "MIT",
+  "script": {
+    "cm": "git-cz"
+  },
+  "devDependencies": {
+    "@talentui/cz-package-changelog": "^1.0.0",
+    "commitizen": "^2.9.6"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/@talentui/cz-package-changelog"
+    }
+  }
+}
