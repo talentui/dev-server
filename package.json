@@ -5,16 +5,41 @@
   "repository": "https://github.com/talentui/dev-server.git",
   "author": "Raymond Li <it1011@qq.com>",
   "license": "MIT",
-  "script": {
-    "cm": "git-cz"
+  "scripts": {
+    "build": "npm run rm && node ./compile/index.js -w",
+    "rm": "rm -rf ./dist/*",
+    "build-prod": "NODE_ENV=production webpack",
+    "cm": "git-cz",
+    "debug-build": "node --inspect  ./compile/index.js -w"
   },
   "devDependencies": {
+    "@talentui/bootstrap-react": "^1.0.0",
     "@talentui/cz-package-changelog": "^1.0.0",
-    "commitizen": "^2.9.6"
+    "@talentui/webpack-config": "talentui/webpack-config",
+    "babel-polyfill": "^6.26.0",
+    "commitizen": "^2.9.6",
+    "jest": "^21.2.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "webpack": "^3.9.1"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/@talentui/cz-package-changelog"
+    }
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "http-proxy-middleware": "^0.17.4",
+    "sudo-prompt": "^8.0.0"
+  },
+  "talentui": {
+    "devServer": {
+      "pattern": "aabbb",
+      "replace": "bbbcc"
     }
   }
 }
