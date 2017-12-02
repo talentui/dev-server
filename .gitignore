@@ -14,4 +14,4 @@ package-lock.json
 dist/
 lib/
 build/
-.vscode
+.vscode/

@@ -1,0 +1,17 @@
+[
+    {
+        "name": "前台页面",
+        "value": "home-page"
+    },
+    {
+        "name": "静态资源构建",
+        "value": "build"
+    },
+    {
+        "name": "代理服务",
+        "value": "proxy"
+    },{
+        "name": "全部",
+        "value": "all"
+    }
+]
