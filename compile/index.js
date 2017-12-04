@@ -21,7 +21,8 @@ if(process.env.NODE_ENV===constants.prod){
 }
 else{
     compiler.watch({}, buildCallback);
-    process.on('beforeExit', () => {
+    process.on('exit', () => {
+        console.log('进行退出 ，停止编译')
         compiler.close();
     });
 }

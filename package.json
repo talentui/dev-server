@@ -1,22 +1,25 @@
 {
-  "name": "dev-server",
-  "version": "1.0.0",
+  "name": "@talentui/dev-server",
+  "version": "0.0.1",
   "main": "index.js",
   "repository": "https://github.com/talentui/dev-server.git",
   "author": "Raymond Li <it1011@qq.com>",
   "license": "MIT",
+  "bin": {
+    "talentui-dev-server": "./index.js"
+  },
   "scripts": {
     "build": "npm run rm && node ./compile/index.js",
     "rm": "rm -rf ./dist/*",
     "build-prod": "npm run rm && NODE_ENV=production node ./compile/index.js",
     "cm": "git-cz",
-    "debug-build": "node --inspect  ./compile/index.js -w",
+    "debug-build": "node --inspect  ./compile/index.js",
     "prepublish": "npm run build-prod"
   },
   "devDependencies": {
     "@talentui/bootstrap-react": "^1.0.0",
     "@talentui/cz-project-changelog": "^0.0.0-development",
-    "@talentui/webpack-config": "talentui/webpack-config",
+    "@talentui/webpack-config": "^1.3.2",
     "babel-polyfill": "^6.26.0",
     "commitizen": "^2.9.6",
     "jest": "^21.2.1",

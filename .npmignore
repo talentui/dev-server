@@ -1,0 +1,22 @@
+# Coverage directory used by tools like istanbul
+coverage
+# node 包的安装目录
+node_modules
+
+# yarn生成的文件，
+yarn.lock
+yarn-error.log
+
+# npm生成的文件
+package-lock.json
+
+# 构建的结果目录, 根据自己的情况做删减吧
+dist/
+lib/
+build/
+.vscode/
+compile/
+src/
+czconfig.json
+webpack.config.js
+yarn.lock
