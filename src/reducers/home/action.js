@@ -1,9 +1,43 @@
-import { constProduct, constGlobal, constTarget } from './const';
-import { v1 } from 'uuid'
+import { fromJS } from 'immutable'
 
-export function saveData(){
-    return function(dispatch, getState){
-        
+import { constProduct, constGlobal, constTarget, GET_CONFIG_FROM_SERVER, SAVE_CONFIG_SUCCESS, CLEAR_SAVING_STATUS } from './const';
+import { v1 } from 'uuid';
+
+export function getData() {
+    return function (dispatch) {
+        fetch('/api/get').then(function (res) {
+            return res.json()
+        }).then(function (config) {
+            dispatch({
+                type: GET_CONFIG_FROM_SERVER,
+                home: fromJS(config)
+            })
+        })
+    }
+}
+
+export function clearSaveStatus() {
+    return { type: CLEAR_SAVING_STATUS }
+}
+
+export function saveData() {
+    return function (dispatch, getState) {
+        let data = getState().get('home').toJS();
+        fetch('/api/save', {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: 'POST',
+            body: JSON.stringify(data)
+        }).then(res => {
+            return res.json()
+        }).then(res => {
+            let { status } = res;
+            dispatch({
+                type: SAVE_CONFIG_SUCCESS, status
+            })
+        })
     }
 }
 
@@ -72,18 +106,18 @@ export const homeGlobalActions = {
     changeGlobalName: function (name, globalId) {
         return { type: constGlobal.CHANGE_GLOBAL_NAME, name, globalId }
     },
-    changeGlobalReg: function(reg, globalId){
-        return {type: constGlobal.CHANGE_GLOBAL_REG, reg, globalId}
+    changeGlobalReg: function (reg, globalId) {
+        return { type: constGlobal.CHANGE_GLOBAL_REG, reg, globalId }
     },
 }
 
 export const homeTargetActions = {
-    changeTargetName: function(name){
+    changeTargetName: function (name) {
         return {
-            type: constTarget.CHANGE_TARGET_NAME, name   
+            type: constTarget.CHANGE_TARGET_NAME, name
         }
     },
-    changeTargetIP: function(ip){
+    changeTargetIP: function (ip) {
         return {
             type: constTarget.CHANAGE_TARGET_IP, ip
         }

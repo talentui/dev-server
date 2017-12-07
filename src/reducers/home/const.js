@@ -2,6 +2,9 @@ const DEFAULT_PROJ_CONFIG = '\/ux\/upaas-portal\/release\/dist\/((?:\w+\/)*)([a-
 const DEFAULT_DLL_CONFIG = '^\/ux\/upaas\/(?:@\w+\/[\w-]+)\/release\/dist\/([a-z-]+)-(?:\d+\.\d+\.\d+)(?:\.min)?(\.js)'
 
 export const SAVE_CONFIG_TO_SERVER = 'save the config data to the server';
+export const GET_CONFIG_FROM_SERVER = 'get the config data from the sever';
+export const SAVE_CONFIG_SUCCESS = 'save data to server success';
+export const CLEAR_SAVING_STATUS = 'remove the saving status from store';
 
 export const constProduct = {
     CHANGE_PROD_NAME: 'change a product name',

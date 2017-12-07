@@ -1,0 +1,27 @@
+{
+    "product": [
+        {
+            "name": "upaas-portal",
+            "id": "40589e52-db22-11e7-a3db-3fd92cfa26c3",
+            "port": "3000",
+            "configs": [
+                {
+                    "reg": "/ux/upaas-portal/release/dist/((?:w+/)*)([a-zA-Z]+(?:-[a-z]+)*)+(?:-w+)?(.chunk)?(?:.min)?(.w{2,4})",
+                    "name": "项目配置",
+                    "id": "40589e53-db22-11e7-a3db-3fd92cfa26c3"
+                }
+            ]
+        }
+    ],
+    "global": [
+        {
+            "name": "dll",
+            "id": "4059afc0-db22-11e7-a3db-3fd92cfa26c3",
+            "reg": "/ux/upaas/release/dist/((?:w+/)*)([a-zA-Z]+(?:-[a-z]+)*)+(?:-w+)?(.chunk)?(?:.min)?(.w{2,4})"
+        }
+    ],
+    "target": {
+        "name": "stnew03.beisen.com",
+        "ip": "60.28.207.67"
+    }
+}

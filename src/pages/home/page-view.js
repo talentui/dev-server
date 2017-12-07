@@ -1,24 +1,23 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
-import {saveData} from '&/reducers/home/action'
+import { connect } from 'react-redux';
+
+import { getData } from '&/reducers/home/action'
 
 import Product from './product';
 import Global from './global';
-import Target from './target'
+import Target from './target';
+import Save from './save';
 
 @connect()
 export default class Home extends Component {
 
-    handleSave = () => {
-        let {dispatch} = this.props;
-        dispatch(saveData());
+    componentWillMount() {
+        this.props.dispatch(getData())
     }
 
     render() {
         return [
-            <div className='save-config' key='save'>
-                <button onClick={this.handleSave}>保存全部</button>
-            </div>,
+            <Save key='save'/>,
             <Target key='target'/>,
             <Product key='product'/>,
             <Global key='global'/>
