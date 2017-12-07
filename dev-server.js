@@ -4,7 +4,7 @@ const app = express();
 
 const proxy = require('./modules/proxy');
 
-app.use('/', express.static('dist'));
+app.use('/', express.static(path.join(__dirname, 'dist/')));
 
 app.use(proxy);
 

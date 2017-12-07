@@ -1,4 +1,122 @@
+$backBg: #232323;
+$distances: 15px;
+$borderRadius: 5px;
+$border: 1px solid #ccc;
+$fontColor: #666;
+$placeHolder: #ccc;
+
+input {
+    border: $border;
+    border-radius: $borderRadius;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: $fontColor;
+    &::-webkit-input-placeholder {
+        color: $placeHolder;
+    }
+    &:-moz-placeholder {
+        color: $placeHolder;
+    }
+}
+
+button {
+    border-radius: 2px;
+    padding: 5px 15px;
+    outline: none;
+    color: white;
+}
+
 body {
-    background-color: black;
-    font-size: 28px;
+    font-family: "Helvetica Neue", Tahoma, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", STHeitiSC, sans-serif;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    color: $fontColor;
+}
+
+h3 {
+    margin: 0;
+}
+
+header {
+    background-color: $backBg;
+    color: white;
+    font-size: 24px;
+    padding: 5px 0 5px 10px;
+}
+
+#talentuiDevServer{
+    min-width: 800px;
+}
+
+.page-container {
+    position: relative;
+
+    margin: $distances;
+    .save-config{
+        position: fixed;
+        right: 20px;
+        top: 50px;
+        button {
+            font-size: 15px;
+            background-color: rgb(56, 186, 114);
+        }
+    }
+    .config-input-left {
+        margin-right: 10px;
+        width: 100px;
+    }
+    .config-input-right {
+        margin-left: 10px;
+        width: calc(100% - 200px);
+    }
+    input {
+        line-height: 28px;
+        font-size: 14px;
+    }
+    .target-config {
+        .i + .i {
+            margin-top: 10px;
+        }
+    }
+    .config-section {
+        margin-bottom: 30px;
+        .server-action {
+            margin-bottom: 15px;
+            button {
+                cursor: pointer;
+                background-color: rgb(185, 204, 79);
+                font-size: 16px;
+                color: white;
+            }
+        }
+    }
+
+    .config-item {
+        margin-bottom: 10px;
+        input {
+            line-height: 24px;
+        }   
+    }
+    .product-item {
+        margin-bottom: 15px;
+        h3 {
+            margin-bottom: 10px;
+            button {
+                margin-left: 20px;
+                background-color: rgb(242, 141, 73);
+                color: white;
+                cursor: pointer;
+                font-size: 12px;
+            }
+            .prod-name {
+                width: 100px;
+                margin-right: 10px;
+            }
+            .prod-port {
+                width: 50px;
+                margin-left: 10px;
+            }
+        }
+    }
 }

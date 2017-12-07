@@ -11,7 +11,6 @@ yarn-error.log
 package-lock.json
 
 # 构建的结果目录, 根据自己的情况做删减吧
-dist/
 lib/
 build/
 .vscode/
@@ -20,3 +19,4 @@ src/
 czconfig.json
 webpack.config.js
 yarn.lock
+README.md

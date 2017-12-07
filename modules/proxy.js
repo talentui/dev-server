@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const proxy = require('http-proxy-middleware');
-const projReg = /\/ux\/upaas-portal\/release\/dist\/((?:\w+\/)*)([a-zA-Z]+(?:-[a-z]+)*)+(?:-\w+)?(\.chunk)?(?:\.min)?(\.\w{2,4})/;
+const upaasReg = /\/ux\/upaas-portal\/release\/dist\/((?:\w+\/)*)([a-zA-Z]+(?:-[a-z]+)*)+(?:-\w+)?(\.chunk)?(?:\.min)?(\.\w{2,4})/;
+const meetingReg = /\/ux\/imeeting\/release\/dist\/((?:\w+\/)*)([a-zA-Z]+(?:-[a-z]+)*)+(?:-\w+)?(\.chunk)?(?:\.min)?(\.\w{2,4})/;
+const honorReg = /\/ux\/honor-center\/release\/dist\/((?:\w+\/)*)([a-zA-Z]+(?:-[a-z]+)*)+(?:-\w+)?(\.chunk)?(?:\.min)?(\.\w{2,4})/;
 const dllReg = /^\/ux\/upaas\/(?:@\w+\/[\w-]+)\/release\/dist\/([a-z-]+)-(?:\d+\.\d+\.\d+)(?:\.min)?(\.js)/;
 const matchedMark = 'talentui-dev-server-url-matched';
 const localHost = "http://localhost:3000";
@@ -23,7 +25,9 @@ function proxyFactory(router, reg, target, customPath){
     }))
 }
 
-proxyFactory(router, projReg, localHost);
+proxyFactory(router, upaasReg, localHost);
+proxyFactory(router, meetingReg, localHost);
+proxyFactory(router, honorReg, localHost);
 proxyFactory(router, dllReg, localHost);
 
 

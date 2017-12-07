@@ -1,3 +1,7 @@
+import ReduxThunk from 'redux-thunk';
+import logger from 'redux-logger'
+
 export default {
-    el: 'talentuiDevServer'
+    el: 'talentuiDevServer',
+    middlewares: [logger,ReduxThunk]
 }
