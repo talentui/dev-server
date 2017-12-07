@@ -3,6 +3,7 @@ const router = express.Router();
 const path = require('path');
 const fs = require('fs');
 const constants = require('./constants')
+const { markConfigChange } = require('./getConfig')
 
 router.get('/get', (req, res, next) => {
     let config = JSON.parse(fs.readFileSync(path.resolve(constants.homePath, constants.configFile), 'utf8'));
@@ -15,6 +16,7 @@ router.post('/save', (req, res, next) => {
         if (err) {
             res.json({ status: '500' })
         } else {
+            markConfigChange();
             res.json({ status: '200' })
         }
     })

@@ -1,6 +1,6 @@
 import { fromJS } from 'immutable'
 
-import { constProduct, constGlobal, constTarget, GET_CONFIG_FROM_SERVER, SAVE_CONFIG_SUCCESS, CLEAR_SAVING_STATUS } from './const';
+import { constProduct, constSpecial, constTarget, GET_CONFIG_FROM_SERVER, SAVE_CONFIG_SUCCESS, CLEAR_SAVING_STATUS } from './const';
 import { v1 } from 'uuid';
 
 export function getData() {
@@ -90,25 +90,49 @@ export const homeProductActions = {
                 id: v1()
             }
         }
+    },
+
+    deleteProduct: function(prodId){
+        return {
+            type: constProduct.DELETE_A_PRODUCT, prodId
+        }
+    },
+
+    deleteProductConfig: function(configId, prodId){
+        return {
+            type: constProduct.DELETE_A_PRODUCT_CONFIG, configId, prodId
+        }
     }
+
 }
 
-export const homeGlobalActions = {
-    addglobal: function () {
+export const homeSpecialActions = {
+    addSpecial: function () {
         return {
-            type: constGlobal.ADD_A_GLOBAL, config: {
+            type: constSpecial.ADD_A_SPECIAL, config: {
+                port: '',
                 name: '',
                 id: v1(),
-                reg: ''
+                reg: "",
+                referer: ''
             }
         }
     },
-    changeGlobalName: function (name, globalId) {
-        return { type: constGlobal.CHANGE_GLOBAL_NAME, name, globalId }
+    changeSpecialName: function (name, specialId) {
+        return { type: constSpecial.CHANGE_SPECIAL_NAME, name, specialId }
     },
-    changeGlobalReg: function (reg, globalId) {
-        return { type: constGlobal.CHANGE_GLOBAL_REG, reg, globalId }
+    changeSpecialReg: function (reg, specialId) {
+        return { type: constSpecial.CHANGE_SPECIAL_REG, reg, specialId }
     },
+    changeSpecialPort: function(port, specialId){
+        return {type: constSpecial.CHANGE_SPECIAL_PORT, port, specialId}
+    },
+    changeSpecialReferer: function(referer, specialId){
+        return {type: constSpecial.CHANAGE_SPECIAL_REFERER, referer, specialId}
+    },
+    deleteSpecialConfig: function(specialId){
+        return {type: constSpecial.DELETE_A_SPECIAL, specialId}
+    }
 }
 
 export const homeTargetActions = {

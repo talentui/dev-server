@@ -1,6 +1,6 @@
 {
   "name": "@talentui/dev-server",
-  "version": "0.0.5",
+  "version": "0.0.0-development",
   "main": "index.js",
   "repository": "https://github.com/talentui/dev-server.git",
   "author": "Raymond Li <it1011@qq.com>",
@@ -14,7 +14,8 @@
     "build-prod": "npm run rm && NODE_ENV=production node ./compile/index.js",
     "cm": "git-cz",
     "debug-build": "node --inspect  ./compile/index.js",
-    "prepublish": "npm run build-prod"
+    "prepublish": "npm run build-prod",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "devDependencies": {
     "@talentui/biz-helper": "^1.0.1",
@@ -34,7 +35,8 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "uuid": "^3.1.0",
-    "webpack": "^3.9.1"
+    "webpack": "^3.9.1",
+    "semantic-release": "^8.2.0"
   },
   "config": {
     "commitizen": {
@@ -44,13 +46,8 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
+    "http-proxy": "^1.16.2",
     "http-proxy-middleware": "^0.17.4",
     "sudo-prompt": "^8.0.0"
-  },
-  "talentui": {
-    "devServer": {
-      "pattern": "aabbb",
-      "replace": "bbbcc"
-    }
   }
 }

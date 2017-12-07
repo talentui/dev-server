@@ -13,12 +13,17 @@ export const constProduct = {
     CHANGE_PROD_CONFIG_REG: 'change product config regexp',
     ADD_A_PRODUCT: 'add a product',
     ADD_A_PRODUCT_CONFIG: 'add a config to product',
+    DELETE_A_PRODUCT: 'delete a product',
+    DELETE_A_PRODUCT_CONFIG: 'delete a product config'
 }
 
-export const constGlobal = {
-    ADD_A_GLOBAL: 'add a global config',
-    CHANGE_GLOBAL_REG: 'change a global config regexp',
-    CHANGE_GLOBAL_NAME: 'change the name of a global config'
+export const constSpecial = {
+    ADD_A_SPECIAL: 'add a special config',
+    CHANGE_SPECIAL_REG: 'change a special config regexp',
+    CHANGE_SPECIAL_NAME: 'change the name of a special config',
+    CHANGE_SPECIAL_PORT: 'change the port of the special config',
+    CHANAGE_SPECIAL_REFERER: 'change the referer of the special config',
+    DELETE_A_SPECIAL: 'delete a special config'
 }
 
 export const constTarget = {

@@ -57,11 +57,21 @@ export default class Product extends Component {
         return '3000';
     }
 
+    handleDeleteProduct = (prodId) => () => {
+        this.props.deleteProduct(prodId);
+    }
+
+    handleDeleteProductConfig = (prodId, configId) => () => {
+        this.props.deleteProductConfig(configId, prodId);
+    }
+
     renderConfig(configs, prodId) {
         return configs.map(item => {
-            return <div key={item.get('id')} className='config-item'>
-                <input type='text' value={item.get('name')} onChange={this.handleChangeName(prodId, item.get('id'))} className='config-input-left' placeholder='配置名称' />-
-                <input type='text' value={item.get('reg')} onChange={this.handleValueChange(prodId, item.get('id'))} className='config-input-right' placeholder='正则表达式' />
+            let id = item.get('id');
+            return <div key={id} className='config-item'>
+                <input type='text' value={item.get('name')} onChange={this.handleChangeName(prodId, id)} className='config-input-left' placeholder='配置名称' />-
+                <input type='text' value={item.get('reg')} onChange={this.handleValueChange(prodId, id)} className='config-input-right' placeholder='正则表达式' />
+                <button onClick={this.handleDeleteProductConfig(prodId, id)} className='delete'>删除</button>
             </div>
         })
     }
@@ -74,6 +84,7 @@ export default class Product extends Component {
                     <input type='text' value={item.get('name')} onChange={this.handleChangeProdName(id)} placeholder='产品目录' className='prod-name' />-
                     <input type='text' value={item.get('port')} onChange={this.handleChangeProdPort(id)} placeholder='代理端口' className='prod-port' />
                     <button onClick={this.handleAddConfig(id)}> 添加配置 </button>
+                    <button onClick={this.handleDeleteProduct(id)} className='delete'>删除项目</button>
                 </h3>
                 {this.renderConfig(item.get('configs'), item.get('id'))}
             </section>

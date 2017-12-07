@@ -2,7 +2,7 @@ import combineImmutableReducers from '@talentui/biz-helper/lib/utils/combineImmu
 import {GET_CONFIG_FROM_SERVER, SAVE_CONFIG_TO_SERVER, SAVE_CONFIG_SUCCESS, CLEAR_SAVING_STATUS} from './const'
 
 import product from './product';
-import global from './global';
+import special from './special';
 import target from './target';
 
 export default function(state, action) {
@@ -20,7 +20,7 @@ export default function(state, action) {
 
 
     return combineImmutableReducers({
-        product, global, target
+        product, special, target
     })(state, action)
 
 } 

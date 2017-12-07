@@ -72,6 +72,16 @@ export default function (state = initState, action) {
                 return configs.push(fromJS(action.config))
             })
         }
+        case constProduct.DELETE_A_PRODUCT: {
+            return state.filter(item => item.get('id') !== action.prodId);
+        }
+
+        case constProduct.DELETE_A_PRODUCT_CONFIG: {
+            let prodIndex = state.findIndex(item => item.get('id') === action.prodId);
+            return state.updateIn([prodIndex, 'configs'], configs => {
+                return configs.filter(item => item.get('id') !== action.configId);
+            })
+        }
     }
     return state;
 }

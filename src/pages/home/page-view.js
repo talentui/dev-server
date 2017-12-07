@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getData } from '&/reducers/home/action'
 
 import Product from './product';
-import Global from './global';
+import Special from './special';
 import Target from './target';
 import Save from './save';
 
@@ -20,7 +20,7 @@ export default class Home extends Component {
             <Save key='save'/>,
             <Target key='target'/>,
             <Product key='product'/>,
-            <Global key='global'/>
+            <Special key='special'/>
         ]
     }
 }

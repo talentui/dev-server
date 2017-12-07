@@ -1,8 +1,8 @@
 $backBg: #232323;
 $distances: 15px;
 $borderRadius: 5px;
-$border: 1px solid #ccc;
-$fontColor: #666;
+$border: 1px solid #ddd;
+$fontColor: #777;
 $placeHolder: #ccc;
 
 input {
@@ -26,6 +26,13 @@ button {
     color: white;
 }
 
+button.delete {
+    color: #666!important;
+    background-color: #eee!important;
+    font-size: 12px!important;
+    margin-left: 20px;
+}
+
 body {
     font-family: "Helvetica Neue", Tahoma, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", STHeitiSC, sans-serif;
     font-size: 14px;
@@ -36,6 +43,7 @@ body {
 
 h3 {
     margin: 0;
+    font-weight: normal;
 }
 
 header {
@@ -68,10 +76,10 @@ header {
     }
     .config-input-right {
         margin-left: 10px;
-        width: calc(100% - 200px);
+        width: calc(100% - 300px);
     }
     input {
-        line-height: 28px;
+        line-height: 24px;
         font-size: 14px;
     }
     .target-config {
@@ -80,7 +88,7 @@ header {
         }
     }
     .config-section {
-        margin-bottom: 30px;
+        margin-bottom: 40px;
         .server-action {
             margin-bottom: 15px;
             button {
@@ -95,11 +103,12 @@ header {
     .config-item {
         margin-bottom: 10px;
         input {
-            line-height: 24px;
+            line-height: 20px;
+            font-size: 12px;
         }   
     }
     .product-item {
-        margin-bottom: 15px;
+        margin-bottom: 30px;
         h3 {
             margin-bottom: 10px;
             button {
@@ -117,6 +126,14 @@ header {
                 width: 50px;
                 margin-left: 10px;
             }
+        }
+    }
+    .special-config{
+        .config-input-right.short{
+            width: calc(100% - 575px)
+        }
+        .config-input-left + .config-input-left{
+            margin-left: 10px;
         }
     }
 }
