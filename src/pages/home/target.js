@@ -20,12 +20,12 @@ export default class Target extends Component {
         let {data} = this.props;
         return <section className='target-config config-section'>
             <div className='i'>
-                <label>目标服务器：
+                <label>代理地址：
                     <input type='text' value={data.get('name')} onChange={this.handleChangeName} />
                 </label>
             </div>
             <div className='i'>
-                <label>公网IP地址：
+                <label>公网IP：
                     <input type='text' value={data.get('ip')} onChange={this.handleChangeIP} />
                 </label>
             </div>
