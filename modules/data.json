@@ -1,7 +1,7 @@
 {
     "special": [
         {
-            "port":"3000",
+            "port": "3000",
             "referer": "upaas.io",
             "name": "dll",
             "id": "4059afc0-db22-11e7-a3db-3fd92cfa26c3",
@@ -13,7 +13,13 @@
         "ip": "60.28.207.67"
     },
     "talentui": {
-        "template": "",
-        "project": []
+        "template": "\\/ux\\/{{ project }}\\/release\\/dist\\/((?:\\w+\\/)*)([a-zA-Z]+(?:-[a-z]+)*)+(?:-\\w+)?(\\.chunk)?(?:\\.min)?(\\.\\w{2,4})",
+        "projects": [
+            {
+                "name": "upaas-portal",
+                "port": "3000",
+                "id": "981f5410-de1c-11e7-a954-2d672b89896c"
+            }
+        ]
     }
 }
