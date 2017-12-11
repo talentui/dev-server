@@ -15,7 +15,6 @@ function rewritePath(regx, req) {
 
 router.use("*", (req, res, next) => {
     let { type, matched } = findMatchConfig(req);
-    debugger;
     switch (type) {
         case "talentui": {
             let { regx, port } = matched;

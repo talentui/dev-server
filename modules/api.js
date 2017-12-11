@@ -11,7 +11,6 @@ router.get('/get', (req, res, next) => {
 })
 
 router.post('/save', (req, res, next) => {
-    debugger;
     let { body } = req;
     fs.writeFile(path.resolve(constants.homePath, constants.configFile), JSON.stringify(body, null, 4), err => {
         if (err) {

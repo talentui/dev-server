@@ -1,31 +1,6 @@
 const { getConfig } = require("./getConfig");
 const { talentuiReplacer } = require("./constants");
 
-// function searchInProduct(product, url) {
-//     let configIndex;
-//     let matchedProduct = product.find(item => {
-//         let { configs } = item;
-//         let length = configs.length;
-//         for (let i = 0; i < length; i++) {
-//             let { reg } = configs[i];
-//             reg = new RegExp(reg);
-//             let testResult = reg.test(url);
-//             if (testResult) {
-//                 configIndex = i;
-//                 return true;
-//             }
-//         }
-//         return false;
-//     });
-//     if (matchedProduct) {
-//         return {
-//             type: "product",
-//             product: matchedProduct,
-//             index: configIndex
-//         };
-//     }
-// }
-
 function getAllPort(product) {
     return product.map(item => {
         return item.port;
