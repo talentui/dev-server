@@ -9,6 +9,7 @@ import {
 import special from "./special";
 import target from "./target";
 import talentui from "./talentui";
+import pass from "./pass";
 
 export default function(state, action) {
     switch (action.type) {
@@ -26,6 +27,7 @@ export default function(state, action) {
     return combineImmutableReducers({
         special,
         target,
-        talentui
+        talentui,
+        pass
     })(state, action);
 }

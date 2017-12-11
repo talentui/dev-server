@@ -6,6 +6,7 @@ import Special from "./special";
 import Target from "./target";
 import Save from "./save";
 import TalentUI from "./talentui";
+import Pass from "./pass";
 
 @connect()
 export default class Home extends Component {
@@ -19,7 +20,8 @@ export default class Home extends Component {
             <Save key="save" />,
             <Target key="target" />,
             <TalentUI key="talentui" />,
-            <Special key="special" />
+            <Special key="special" />,
+            <Pass key="pass" />
         ];
     }
 }

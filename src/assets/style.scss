@@ -60,8 +60,10 @@ header {
 
 .page-container {
     position: relative;
-
     margin: $distances;
+    input[type='checkbox'] {
+        margin-right: 10px;
+    }
     .save-config {
         position: fixed;
         right: 20px;
@@ -78,7 +80,7 @@ header {
     .config-input-right {
         &.wide {
             margin-left: 0px;
-            width: calc(100% - 200px);
+            width: calc(100% - 245px);
         }
         margin-left: 10px;
         width: calc(100% - 300px);
@@ -97,7 +99,7 @@ header {
         }
     }
     .config-section {
-        margin-bottom: 40px;
+        margin-bottom: 50px;
         .server-action {
             margin-bottom: 15px;
             button {
@@ -145,7 +147,7 @@ header {
     }
     .special-config {
         .config-input-right.short {
-            width: calc(100% - 575px);
+            width: calc(100% - 658px);
         }
     }
 }

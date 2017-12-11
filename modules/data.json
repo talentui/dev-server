@@ -5,7 +5,8 @@
             "referer": "upaas.io",
             "name": "dll",
             "id": "4059afc0-db22-11e7-a3db-3fd92cfa26c3",
-            "reg": "^\\/ux\\/upaas\\/(?:@\\w+\\/[\\w-]+)\\/release\\/dist\\/([a-z-]+)-(?:\\d+\\.\\d+\\.\\d+)(?:\\.min)?(\\.js)"
+            "reg": "^\\/ux\\/upaas\\/(?:@\\w+\\/[\\w-]+)\\/release\\/dist\\/([a-z-]+)-(?:\\d+\\.\\d+\\.\\d+)(?:\\.min)?(\\.js)",
+            "enabled": true
         }
     ],
     "target": {
@@ -18,8 +19,16 @@
             {
                 "name": "upaas-portal",
                 "port": "3000",
-                "id": "981f5410-de1c-11e7-a954-2d672b89896c"
+                "id": "981f5410-de1c-11e7-a954-2d672b89896c",
+                "enabled": true
             }
         ]
-    }
+    },
+    "pass": [
+        {
+            "id": "9fd862b0-de39-11e7-bca1-e191cfa06358",
+            "reg": "/ux/upaas/@talentui/dll-react/release/dist/dll-react-15.6.3.min.js",
+            "enabled": true
+        }
+    ]
 }

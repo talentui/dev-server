@@ -34,11 +34,16 @@ export default class Special extends Component {
     this.props.deleteSpecialConfig(specialId);
   };
 
+  handleToggleEnabled = specialId => () => {
+    this.props.toggleEnabled(specialId);
+  }
+
   renderConfigList() {
     return this.props.data.map(item => {
       let id = item.get("id");
       return (
         <div key={id} className="config-item">
+          <input type='checkbox' className='config-enbaled' checked={item.get('enabled') || false} onChange={this.handleToggleEnabled(id)}/>
           <input
             type="text"
             value={item.get("name")}
@@ -78,9 +83,10 @@ export default class Special extends Component {
   render() {
     return (
       <section className="special-config config-section">
-        <div className="server-action">
-          <button onClick={this.handleAddGlobal}> 添加特殊配置 </button>
-        </div>
+        <h3 className="server-action">
+          特殊配置
+          <button onClick={this.handleAddGlobal} className='btn-add-pink'> 添加 </button>
+        </h3>
         {this.renderConfigList()}
       </section>
     );

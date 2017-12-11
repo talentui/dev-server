@@ -5,6 +5,7 @@ import {
     constSpecial,
     constTarget,
     constTalentUI,
+    constPass,
     GET_CONFIG_FROM_SERVER,
     SAVE_CONFIG_SUCCESS,
     CLEAR_SAVING_STATUS
@@ -87,9 +88,16 @@ export const homeSpecialActions = {
     },
     deleteSpecialConfig: function(specialId) {
         return { type: constSpecial.DELETE_A_SPECIAL, specialId };
+    },
+    toggleEnabled: function(specialId) {
+        return {
+            type: constSpecial.TOGGLE_SPECIAL_ENABLED,
+            specialId
+        };
     }
 };
 
+// 未匹配到请求要发送的地址
 export const homeTargetActions = {
     changeTargetName: function(name) {
         return {
@@ -130,10 +138,47 @@ export const homeTalentuiActions = {
             projectId
         };
     },
-    changeTemplate: function(template){
+    changeTemplate: function(template) {
         return {
             type: constTalentUI.CHANAGE_TALENTUI_TEMPLATE,
             template
-        }
+        };
+    },
+    toggleEnabled: function(projectId) {
+        return { type: constTalentUI.TOGGLE_TALENTUI_ENABLED, projectId };
+    },
+    deleteTalentuiProject: function(projectId) {
+        return { type: constTalentUI.DELETE_TALENTUI_PROJECT, projectId };
+    }
+};
+
+export const homePassActions = {
+    addPass: function() {
+        return {
+            type: constPass.ADD_PASS_CONFIG,
+            pass: fromJS({
+                id: v1(),
+                reg: ""
+            })
+        };
+    },
+    deletePass: function(passId) {
+        return {
+            type: constPass.DELETE_PASS_CONFIG,
+            passId
+        };
+    },
+    changePassReg: function(passId, reg) {
+        return {
+            type: constPass.CHANAGE_PASS_REG,
+            passId,
+            reg
+        };
+    },
+    toggleEnabled: function(passId) {
+        return {
+            type: constPass.TOGGLE_PASS_ENABLED,
+            passId
+        };
     }
 };

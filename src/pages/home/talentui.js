@@ -24,12 +24,26 @@ export default class Talentui extends Component {
         this.props.addProject();
     };
 
+    handleChangeEnabled = (projectId) => () => {
+        this.props.toggleEnabled(projectId)
+    }
+
+    handleDeleteProject = (projectId) => () => {
+        this.props.deleteTalentuiProject(projectId)
+    }
+
     renderProjectList() {
         let { data } = this.props;
         return data.get("projects").map(item => {
             let id = item.get("id");
             return (
                 <div key={id} className="config-item">
+                    <input
+                        type="checkbox"
+                        className="config-enabled"
+                        checked={item.get("enabled") || false}
+                        onChange={this.handleChangeEnabled(id)}
+                    />
                     <input
                         type="text"
                         value={item.get("name")}
@@ -45,6 +59,7 @@ export default class Talentui extends Component {
                         onChange={this.handleChangeProjectPort(id)}
                         className="config-input-left"
                     />
+                    <button className="delete" onClick={this.handleDeleteProject(id)}>删除</button>
                 </div>
             );
         });

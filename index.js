@@ -16,9 +16,7 @@ const options = {
     name: 'TalentUI Dev Server'
 }
 
-const foreverPath = path.join(__dirname, './node_modules/.bin/forever');
-
-sudo.exec(`${foreverPath}  ${__dirname}/dev-server.js`, options, function(error, stdout, stderr) {
+sudo.exec(`node ${__dirname}/dev-server.js`, options, function(error, stdout, stderr) {
     if(error) throw error;
     console.log('no error')
     console.log(stdout)

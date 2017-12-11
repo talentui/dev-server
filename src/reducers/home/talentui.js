@@ -25,7 +25,7 @@ export default function(state = initState, action) {
                 let projIndex = projects.findIndex(
                     item => item.get("id") === action.projectId
                 );
-                return projects.setIn([projIndex, 'name'], action.name);
+                return projects.setIn([projIndex, "name"], action.name);
             });
         }
         case constTalentUI.CHANAGE_TALENTUI_PROJECT_PORT: {
@@ -33,11 +33,27 @@ export default function(state = initState, action) {
                 let projIndex = projects.findIndex(
                     item => item.get("id") === action.projectId
                 );
-                return projects.setIn([projIndex, 'port'], action.port);
+                return projects.setIn([projIndex, "port"], action.port);
             });
         }
         case constTalentUI.CHANAGE_TALENTUI_TEMPLATE: {
-            return state.set('template', action.template)
+            return state.set("template", action.template);
+        }
+        case constTalentUI.TOGGLE_TALENTUI_ENABLED: {
+            return state.update("projects", projects => {
+                let projIndex = projects.findIndex(
+                    item => item.get("id") === action.projectId
+                );
+                let path = [projIndex, "enabled"];
+                return projects.setIn(path, !projects.getIn(path));
+            });
+        }
+        case constTalentUI.DELETE_TALENTUI_PROJECT: {
+            return state.update("projects", projects => {
+                return projects.filter(
+                    item => item.get("id") !== action.projectId
+                );
+            });
         }
     }
     return state;
