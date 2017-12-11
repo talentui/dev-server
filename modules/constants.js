@@ -1,4 +1,5 @@
 module.exports = {
     configFile: '.tdsconfig.json',
-    homePath: process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE
+    homePath: process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE,
+    talentuiReplacer: /{{\s*project\s*}}/
 }

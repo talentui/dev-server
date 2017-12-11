@@ -1,34 +1,44 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import mapActionCreators from '@talentui/biz-helper/lib/utils/mapActionCreators';
-import { homeTargetActions } from '&/reducers/home/action';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { mapActionCreators } from "&/helpers/easy-import";
+import { homeTargetActions } from "&/reducers/home/action";
 
-@connect(state => ({ data: state.getIn(['home', 'target']) }), mapActionCreators(homeTargetActions))
+@connect(
+    state => ({ data: state.getIn(["home", "target"]) }),
+    mapActionCreators(homeTargetActions)
+)
 export default class Target extends Component {
-
     handleChangeName = ({ target }) => {
         let { changeTargetName } = this.props;
-        changeTargetName(target.value)
-    }
+        changeTargetName(target.value);
+    };
 
-    handleChangeIP = ({target}) => {
+    handleChangeIP = ({ target }) => {
         let { changeTargetIP } = this.props;
-        changeTargetIP(target.value)
-    }
+        changeTargetIP(target.value);
+    };
 
     render() {
-        let {data} = this.props;
-        return <section className='target-config config-section'>
-            <div className='i'>
-                <label>代理地址：
-                    <input type='text' value={data.get('name')} onChange={this.handleChangeName} />
-                </label>
-            </div>
-            <div className='i'>
-                <label>公网IP：
-                    <input type='text' value={data.get('ip')} onChange={this.handleChangeIP} />
-                </label>
-            </div>
-        </section>
+        let { data } = this.props;
+        return (
+            <section className="target-config config-section">
+                <div className="i">
+                    <label>代理地址：</label>
+                    <input
+                        type="text"
+                        value={data.get("name")}
+                        onChange={this.handleChangeName}
+                    />
+                </div>
+                <div className="i">
+                    <label>公网IP：</label>
+                    <input
+                        type="text"
+                        value={data.get("ip")}
+                        onChange={this.handleChangeIP}
+                    />
+                </div>
+            </section>
+        );
     }
 }

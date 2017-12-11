@@ -27,14 +27,15 @@ button {
 }
 
 button.delete {
-    color: #666!important;
-    background-color: #eee!important;
-    font-size: 12px!important;
+    color: #666 !important;
+    background-color: #eee !important;
+    font-size: 12px !important;
     margin-left: 20px;
 }
 
 body {
-    font-family: "Helvetica Neue", Tahoma, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", STHeitiSC, sans-serif;
+    font-family: "Helvetica Neue", Tahoma, "PingFang SC", "Hiragino Sans GB",
+        "Microsoft YaHei", STHeitiSC, sans-serif;
     font-size: 14px;
     margin: 0;
     padding: 0;
@@ -53,7 +54,7 @@ header {
     padding: 5px 0 5px 10px;
 }
 
-#talentuiDevServer{
+#talentuiDevServer {
     min-width: 800px;
 }
 
@@ -61,7 +62,7 @@ header {
     position: relative;
 
     margin: $distances;
-    .save-config{
+    .save-config {
         position: fixed;
         right: 20px;
         top: 50px;
@@ -75,6 +76,10 @@ header {
         width: 100px;
     }
     .config-input-right {
+        &.wide {
+            margin-left: 0px;
+            width: calc(100% - 200px);
+        }
         margin-left: 10px;
         width: calc(100% - 300px);
     }
@@ -85,6 +90,10 @@ header {
     .target-config {
         .i + .i {
             margin-top: 10px;
+        }
+        label {
+            display: inline-block;
+            width: 80px;
         }
     }
     .config-section {
@@ -98,6 +107,18 @@ header {
                 color: white;
             }
         }
+
+        .config-input-left + .config-input-left {
+            margin-left: 10px;
+        }
+
+        button.btn-add-pink {
+            margin-left: 20px;
+            background-color: rgb(242, 141, 73);
+            color: white;
+            cursor: pointer;
+            font-size: 12px;
+        }
     }
 
     .config-item {
@@ -105,19 +126,13 @@ header {
         input {
             line-height: 20px;
             font-size: 12px;
-        }   
+        }
     }
     .product-item {
         margin-bottom: 30px;
         h3 {
             margin-bottom: 10px;
-            button {
-                margin-left: 20px;
-                background-color: rgb(242, 141, 73);
-                color: white;
-                cursor: pointer;
-                font-size: 12px;
-            }
+
             .prod-name {
                 width: 100px;
                 margin-right: 10px;
@@ -128,12 +143,9 @@ header {
             }
         }
     }
-    .special-config{
-        .config-input-right.short{
-            width: calc(100% - 575px)
-        }
-        .config-input-left + .config-input-left{
-            margin-left: 10px;
+    .special-config {
+        .config-input-right.short {
+            width: calc(100% - 575px);
         }
     }
 }

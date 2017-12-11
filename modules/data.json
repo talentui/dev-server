@@ -1,42 +1,4 @@
 {
-    "product": [
-        {
-            "name": "upaas-portal",
-            "id": "40589e52-db22-11e7-a3db-3fd92cfa26c3",
-            "port": "3000",
-            "configs": [
-                {
-                    "reg": "\\/ux\\/upaas-portal\\/release\\/dist\\/((?:\\w+\\/)*)([a-zA-Z]+(?:-[a-z]+)*)+(?:-\\w+)?(\\.chunk)?(?:\\.min)?(\\.\\w{2,4})",
-                    "name": "项目配置",
-                    "id": "40589e53-db22-11e7-a3db-3fd92cfa26c3"
-                }
-            ]
-        },
-        {
-            "name": "imeeting",
-            "id": "48204100-db41-11e7-b6da-eb2c18d4c3f2",
-            "port": 3001,
-            "configs": [
-                {
-                    "reg": "\\/ux\\/imeeting\\/release\\/dist\\/((?:\\w+\\/)*)([a-zA-Z]+(?:-[a-z]+)*)+(?:-\\w+)?(\\.chunk)?(?:\\.min)?(\\.\\w{2,4})",
-                    "name": "项目配置",
-                    "id": "521f2720-db41-11e7-b6da-eb2c18d4c3f2"
-                }
-            ]
-        },
-        {
-            "name": "honor-center",
-            "id": "595e29f0-db41-11e7-b6da-eb2c18d4c3f2",
-            "port": 3002,
-            "configs": [
-                {
-                    "reg": "\\/ux\\/honor-center\\/release\\/dist\\/((?:\\w+\\/)*)([a-zA-Z]+(?:-[a-z]+)*)+(?:-\\w+)?(\\.chunk)?(?:\\.min)?(\\.\\w{2,4})",
-                    "name": "项目配置",
-                    "id": "6097ae80-db41-11e7-b6da-eb2c18d4c3f2"
-                }
-            ]
-        }
-    ],
     "special": [
         {
             "port":"3000",
@@ -49,5 +11,9 @@
     "target": {
         "name": "stnew03.beisen.com",
         "ip": "60.28.207.67"
+    },
+    "talentui": {
+        "template": "",
+        "project": []
     }
 }

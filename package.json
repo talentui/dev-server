@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@talentui/biz-helper": "^1.0.1",
-    "@talentui/bootstrap-react": "^1.0.0",
+    "@talentui/bootstrap-react": "^1.0.1",
     "@talentui/cz-package-changelog": "^1.0.0",
     "@talentui/webpack-config": "^1.3.5",
     "babel-polyfill": "^6.26.0",
@@ -46,6 +46,7 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
+    "forever": "^0.15.3",
     "http-proxy": "^1.16.2",
     "http-proxy-middleware": "^0.17.4",
     "sudo-prompt": "^8.0.0"

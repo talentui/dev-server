@@ -30,3 +30,10 @@ export const constTarget = {
     CHANGE_TARGET_NAME: 'change the name of the target server',
     CHANAGE_TARGET_IP: 'change the public ip of the target server'
 }
+
+export const constTalentUI = {
+    ADD_TALENTUI_PROJECT: 'add a talentui project',
+    CHANAGE_TALENTUI_PROJECT_NAME: 'change the name of a talentui project',
+    CHANAGE_TALENTUI_PROJECT_PORT: 'change the port of a talentui project',
+    CHANAGE_TALENTUI_TEMPLATE: 'change reg template of the talentui proxy'
+}
