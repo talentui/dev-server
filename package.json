@@ -5,6 +5,7 @@
   "repository": "https://github.com/talentui/dev-server.git",
   "author": "Raymond Li <it1011@qq.com>",
   "license": "MIT",
+  "SSL-Pass-Phrase": "talentui",
   "bin": {
     "talentui-dev-server": "./index.js"
   },

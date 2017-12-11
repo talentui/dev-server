@@ -10,6 +10,10 @@ router.get('/get', (req, res, next) => {
     res.json(config);
 })
 
+router.get('/download/cert', (req, res, next) => {
+    res.download(path.resolve(__dirname, '../ssl/cert.pem'))
+});
+
 router.post('/save', (req, res, next) => {
     let { body } = req;
     fs.writeFile(path.resolve(constants.homePath, constants.configFile), JSON.stringify(body, null, 4), err => {

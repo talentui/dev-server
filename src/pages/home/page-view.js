@@ -15,13 +15,20 @@ export default class Home extends Component {
         this.props.dispatch(getData());
     }
 
+    downloadCert(){
+        window.open('/api/download/cert')
+    }
+
     render() {
         return [
             <Save key="save" />,
             <Target key="target" />,
             <TalentUI key="talentui" />,
             <Special key="special" />,
-            <Pass key="pass" />
+            <Pass key="pass" />,
+            <div key="download">
+                <button onClick={this.downloadCert} className='download'>下载ssl证书</button>
+            </div>
         ];
     }
 }

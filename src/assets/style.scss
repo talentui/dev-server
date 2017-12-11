@@ -24,6 +24,7 @@ button {
     padding: 5px 15px;
     outline: none;
     color: white;
+    cursor: pointer;
 }
 
 button.delete {
@@ -31,6 +32,10 @@ button.delete {
     background-color: #eee !important;
     font-size: 12px !important;
     margin-left: 20px;
+}
+
+button.download {
+    background-color: rgb(147, 130, 255);
 }
 
 body {
