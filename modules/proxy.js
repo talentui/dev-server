@@ -3,7 +3,6 @@ const router = express.Router();
 const httpProxyMiddleware = require("http-proxy-middleware");
 const httpProxy = require("http-proxy");
 const proxy = httpProxy.createProxyServer({});
-const parseDeirectMatch = require("./parseDeirectMatch");
 const url = require("url");
 const fs = require("fs");
 const path = require("path");
