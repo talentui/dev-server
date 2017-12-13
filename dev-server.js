@@ -3,15 +3,21 @@ const http = require('http');
 const https = require('https');
 const fs = require('fs');
 const express = require('express');
+const favicon = require('serve-favicon');
 const app = express();
 const bodyParser = require('body-parser');
 
 const proxy = require('./modules/proxy');
 const api = require('./modules/api');
+
+app.use(favicon(path.join(__dirname,'./favicon.ico')))
+
+app.use('/', express.static(path.join(__dirname, 'dist/')));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 
-app.use('/', express.static(path.join(__dirname, 'dist/')));
+
 app.use('/api', api);
 
 app.use(proxy);

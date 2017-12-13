@@ -58,7 +58,7 @@ export function saveData() {
 }
 
 export const homeSpecialActions = {
-    addSpecial: function() {
+    addSpecial() {
         return {
             type: constSpecial.ADD_A_SPECIAL,
             config: {
@@ -70,26 +70,33 @@ export const homeSpecialActions = {
             }
         };
     },
-    changeSpecialName: function(name, specialId) {
+    changeSpecialName(name, specialId) {
         return { type: constSpecial.CHANGE_SPECIAL_NAME, name, specialId };
     },
-    changeSpecialReg: function(reg, specialId) {
+    changeSpecialReg(reg, specialId) {
         return { type: constSpecial.CHANGE_SPECIAL_REG, reg, specialId };
     },
-    changeSpecialPort: function(port, specialId) {
+    changeSpecialPort(port, specialId) {
         return { type: constSpecial.CHANGE_SPECIAL_PORT, port, specialId };
     },
-    changeSpecialReferer: function(referer, specialId) {
+    changeSpecialReferer(referer, specialId) {
         return {
             type: constSpecial.CHANAGE_SPECIAL_REFERER,
             referer,
             specialId
         };
     },
-    deleteSpecialConfig: function(specialId) {
+    changeSpecialDirectMatch(directMatch, specialId) {
+        return {
+            type: constSpecial.CHANAGE_SPECIAL_DIRECT_MATCH,
+            directMatch,
+            specialId
+        }
+    },
+    deleteSpecialConfig(specialId) {
         return { type: constSpecial.DELETE_A_SPECIAL, specialId };
     },
-    toggleEnabled: function(specialId) {
+    toggleEnabled(specialId) {
         return {
             type: constSpecial.TOGGLE_SPECIAL_ENABLED,
             specialId

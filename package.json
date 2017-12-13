@@ -49,6 +49,7 @@
     "express": "^4.16.2",
     "http-proxy": "^1.16.2",
     "http-proxy-middleware": "^0.17.4",
+    "serve-favicon": "^2.4.5",
     "sudo-prompt": "^8.0.0"
   }
 }

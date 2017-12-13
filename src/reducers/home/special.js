@@ -5,49 +5,42 @@ import { constSpecial } from "./const";
 const initState = List([]);
 
 export default function(state = initState, action) {
+    let specialIndex;
+    let { specialId } = action;
+    if (specialId)
+        specialIndex = state.findIndex(item => item.get("id") === specialId);
     switch (action.type) {
         case constSpecial.ADD_A_SPECIAL: {
             return state.push(fromJS(action.config));
         }
 
         case constSpecial.CHANGE_SPECIAL_REG: {
-            let { specialId, reg } = action;
-            let globalIndex = state.findIndex(
-                item => item.get("id") === specialId
-            );
-            return state.setIn([globalIndex, "reg"], reg);
+            let { reg } = action;
+            return state.setIn([specialIndex, "reg"], reg);
         }
 
         case constSpecial.CHANGE_SPECIAL_NAME: {
-            let { specialId, name } = action;
-            let globalIndex = state.findIndex(
-                item => item.get("id") === specialId
-            );
-            return state.setIn([globalIndex, "name"], name);
+            let { name } = action;
+            return state.setIn([specialIndex, "name"], name);
         }
         case constSpecial.CHANGE_SPECIAL_PORT: {
-            let { specialId, port } = action;
-            let globalIndex = state.findIndex(
-                item => item.get("id") === specialId
-            );
-            return state.setIn([globalIndex, "port"], port);
+            let { port } = action;
+            return state.setIn([specialIndex, "port"], port);
         }
         case constSpecial.CHANAGE_SPECIAL_REFERER: {
-            let { specialId, referer } = action;
-            let globalIndex = state.findIndex(
-                item => item.get("id") === specialId
-            );
-            return state.setIn([globalIndex, "referer"], referer);
+            let { referer } = action;
+            return state.setIn([specialIndex, "referer"], referer);
         }
         case constSpecial.DELETE_A_SPECIAL: {
             return state.filter(item => item.get("id") !== action.specialId);
         }
         case constSpecial.TOGGLE_SPECIAL_ENABLED: {
-            let specialIndex = state.findIndex(
-                item => item.get("id") === action.specialId
-            );
             let path = [specialIndex, "enabled"];
             return state.setIn(path, !state.getIn(path));
+        }
+        case constSpecial.CHANAGE_SPECIAL_DIRECT_MATCH: {
+            let path = [specialIndex, 'directMatch'];
+            return state.setIn(path, action.directMatch)
         }
     }
 

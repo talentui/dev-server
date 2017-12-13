@@ -26,7 +26,8 @@ export const constSpecial = {
     CHANGE_SPECIAL_PORT: "change the port of the special config",
     CHANAGE_SPECIAL_REFERER: "change the referer of the special config",
     DELETE_A_SPECIAL: "delete a special config",
-    TOGGLE_SPECIAL_ENABLED: "toggle the state of the special config"
+    TOGGLE_SPECIAL_ENABLED: "toggle the state of the special config",
+    CHANAGE_SPECIAL_DIRECT_MATCH: 'change the direct match of the special config'
 };
 
 export const constTarget = {

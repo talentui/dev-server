@@ -60,7 +60,7 @@ header {
 }
 
 #talentuiDevServer {
-    min-width: 800px;
+    min-width: 1200px;
 }
 
 .page-container {
@@ -151,6 +151,18 @@ header {
         }
     }
     .special-config {
+        table {
+            width: calc(100% - 20px);
+            th {
+                text-align: left;
+            }
+            input[type='text'] {
+                width: calc(100% - 20px)
+            }
+        }
+        .delete {
+            margin-left: 0px;
+        }
         .config-input-right.short {
             width: calc(100% - 658px);
         }

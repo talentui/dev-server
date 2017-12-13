@@ -54,7 +54,7 @@ export default class Pass extends Component {
 
     render() {
         return (
-            <section className="special-config config-section">
+            <section className="pass-config config-section">
                 <h3 className="server-action">
                     跳过规则
                     <button
