@@ -1,34 +1,61 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
+// import Logger from './logger';
+import Config from "./config";
+import Logger from "./logger";
 
-import { getData } from "&/reducers/home/action";
-import Special from "./special";
-import Target from "./target";
-import Save from "./save";
-import TalentUI from "./talentui";
-import Pass from "./pass";
+const tabs = ["config", "logger"];
 
-@connect()
 export default class Home extends Component {
-    
-    componentWillMount() {
-        this.props.dispatch(getData());
-    }
+    state = {
+        currentTab: tabs[1]
+    };
 
-    downloadCert(){
-        window.open('/api/download/cert')
-    }
+    switchTab = index => () => {
+        this.setState({
+            currentTab: tabs[index]
+        });
+    };
 
     render() {
-        return [
-            <Save key="save" />,
-            <Target key="target" />,
-            <TalentUI key="talentui" />,
-            <Special key="special" />,
-            <Pass key="pass" />,
-            <div key="download">
-                <button onClick={this.downloadCert} className='download'>下载ssl证书</button>
+        return (
+            <div className="application">
+                <ul className="tabs">
+                    <li
+                        className={`tab${
+                            this.state.currentTab === tabs[0] ? " cur" : ""
+                        }`}
+                    >
+                        <a href="javascript:;" onClick={this.switchTab(0)}>
+                            配置
+                        </a>
+                    </li>
+                    <li
+                        className={`tab${
+                            this.state.currentTab === tabs[1] ? " cur" : ""
+                        }`}
+                    >
+                        <a href="javascript:;" onClick={this.switchTab(1)}>
+                            日志
+                        </a>
+                    </li>
+                </ul>
+                <div
+                    style={{
+                        display:
+                            this.state.currentTab === tabs[0] ? "block" : "none"
+                    }}
+                >
+                    <Config />;
+                </div>
+                <div
+                    style={{
+                        display:
+                            this.state.currentTab === tabs[1] ? "block" : "none"
+                    }}
+                >
+                    <Logger />
+                </div>
             </div>
-        ];
+        );
     }
 }

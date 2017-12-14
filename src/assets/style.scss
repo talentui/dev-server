@@ -66,13 +66,48 @@ header {
 .page-container {
     position: relative;
     margin: $distances;
-    input[type='checkbox'] {
+    input[type="checkbox"] {
         margin-right: 10px;
+    }
+    .application {
+        .tabs {
+            overflow: hidden;
+            padding: 0;
+            border-bottom: 1px solid #ccc;
+            .tab {
+                float: left;
+                margin-right: 10px;
+                list-style: none;
+                padding: 1px 20px;
+                a {
+                    color: $fontColor;
+                    font-size: 18px;
+                    text-decoration: none;
+                }
+                &.cur {
+                    background-color: gray;
+                    a {
+                        color: white;
+                    }
+                }
+            }
+        }
+        .logger {
+            background-color: black;
+            line-height: 18px;
+            font-weight: 200;
+            font-size: 12px;
+            padding: 10px;
+            color: white;
+            min-height: 200px;
+            max-height: 500px;
+            border-radius: 2px;
+        }
     }
     .save-config {
         position: fixed;
         right: 20px;
-        top: 50px;
+        top: 90px;
         button {
             font-size: 15px;
             background-color: rgb(56, 186, 114);
@@ -156,8 +191,8 @@ header {
             th {
                 text-align: left;
             }
-            input[type='text'] {
-                width: calc(100% - 20px)
+            input[type="text"] {
+                width: calc(100% - 20px);
             }
         }
         .delete {

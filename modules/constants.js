@@ -1,5 +1,8 @@
 module.exports = {
     configFile: '.tdsconfig.json',
     homePath: process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE,
-    talentuiReplacer: /{{\s*project\s*}}/
+    talentuiReplacer: /{{\s*project\s*}}/,
+    socketio: 'socketio',
+    roomLog: 'logger',
+    msgLog: 'log'
 }
