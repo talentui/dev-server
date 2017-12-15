@@ -7,7 +7,7 @@ const tabs = ["config", "logger"];
 
 export default class Home extends Component {
     state = {
-        currentTab: tabs[1]
+        currentTab: tabs[0]
     };
 
     switchTab = index => () => {

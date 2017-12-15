@@ -15,7 +15,6 @@ export default class Logger extends Component {
         let { origin } = window.location;
         let socket = io.connect(origin);
         socket.on("log", log => {
-            debugger;
             this.setState({
                 logs: [log, ...this.state.logs]
             });

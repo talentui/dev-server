@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { mapActionCreators } from "&/helpers/easy-import";
-import { homeSpecialActions } from "&/reducers/home/action";
+import { actions } from "&/reducers/home/direct.js";
 
 const tableWidth = {
     t1: {
@@ -27,46 +27,47 @@ const tableWidth = {
     }
 };
 
-@connect(state => {
-    return { data: state.getIn(["home", "special"]) };
-}, mapActionCreators(homeSpecialActions))
-export default class Special extends Component {
+@connect(
+    state => ({ data: state.getIn(["home", "direct"]) }),
+    mapActionCreators(actions)
+)
+export default class Direct extends Component {
     handleAddGlobal = () => {
-        let { addSpecial } = this.props;
-        addSpecial();
+        let { addDirect } = this.props;
+        addDirect();
     };
 
-    handleChangeReg = specialId => ({ target }) => {
-        let { changeSpecialReg } = this.props;
-        changeSpecialReg(target.value.trim(), specialId);
+    handleChangeReg = directId => ({ target }) => {
+        let { changeReg } = this.props;
+        changeReg(directId, target.value.trim());
     };
 
-    handleChangeName = specialId => ({ target }) => {
-        let { changeSpecialName } = this.props;
-        changeSpecialName(target.value.trim(), specialId);
+    handleChangeName = directId => ({ target }) => {
+        let { changeName } = this.props;
+        changeName(directId, target.value.trim());
     };
 
-    handleChangePort = specialId => ({ target }) => {
-        this.props.changeSpecialPort(target.value.trim(), specialId);
+    handleChangeTarget = directId => ({ target }) => {
+        this.props.changeTarget(directId, target.value.trim());
     };
 
-    handleChangeReferer = specialId => ({ target }) => {
-        this.props.changeSpecialReferer(target.value.trim(), specialId);
+    handleDeleteConfig = directId => () => {
+        this.props.deleteDirect(directId);
     };
 
-    handleDeleteConfig = specialId => () => {
-        this.props.deleteSpecialConfig(specialId);
-    };
-
-    handleToggleEnabled = specialId => () => {
-        this.props.toggleEnabled(specialId);
-    };
-
-    handleChangeDirectMatch = specialId => ({ target }) => {
-        this.props.changeSpecialDirectMatch(target.value.trim(), specialId);
+    handleToggleEnabled = directId => () => {
+        this.props.toggleEnabled(directId);
     };
 
     renderConfigList() {
+        if (!this.props.data || !this.props.data.size)
+            return (
+                <tr>
+                    <td colSpan="5" className="no-config">
+                        还木有任何配置
+                    </td>
+                </tr>
+            );
         return this.props.data.map(item => {
             let id = item.get("id");
             return (
@@ -84,15 +85,7 @@ export default class Special extends Component {
                             type="text"
                             value={item.get("name")}
                             onChange={this.handleChangeName(id)}
-                            placeholder="配置名称"
-                        />
-                    </td>
-                    <td>
-                        <input
-                            type="text"
-                            value={item.get("port")}
-                            onChange={this.handleChangePort(id)}
-                            placeholder="端口号"
+                            placeholder="名称,方便你区分配置"
                         />
                     </td>
                     <td>
@@ -100,15 +93,15 @@ export default class Special extends Component {
                             type="text"
                             value={item.get("reg")}
                             onChange={this.handleChangeReg(id)}
-                            placeholder="配置规则"
+                            placeholder="requrest url"
                         />
                     </td>
                     <td>
                         <input
                             type="text"
-                            value={item.get("referer")}
-                            onChange={this.handleChangeReferer(id)}
-                            placeholder="引用地址"
+                            value={item.get("target")}
+                            onChange={this.handleChangeTarget(id)}
+                            placeholder="添加协议使用远程地址，不添加使用本地文件"
                         />
                     </td>
 
@@ -127,15 +120,14 @@ export default class Special extends Component {
 
     render() {
         return (
-            <section className="special-config config-section">
+            <section className="direct-config config-section">
                 <h3 className="server-action">
-                    代理
+                    直配
                     <button
                         onClick={this.handleAddGlobal}
                         className="btn-add-pink"
                     >
-                        {" "}
-                        添加{" "}
+                        添加
                     </button>
                 </h3>
                 <table>
@@ -145,9 +137,8 @@ export default class Special extends Component {
                                 <input type="checkbox" />
                             </th>
                             <th style={tableWidth.t2}>标识</th>
-                            <th style={tableWidth.t3}>端口</th>
-                            <th>规则</th>
-                            <th style={tableWidth.t4}>引用地址过滤</th>
+                            <th>Request URL</th>
+                            <th>目标</th>
                             <th style={tableWidth.t7}>操作</th>
                         </tr>
                     </thead>

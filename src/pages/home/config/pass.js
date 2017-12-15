@@ -56,7 +56,7 @@ export default class Pass extends Component {
         return (
             <section className="pass-config config-section">
                 <h3 className="server-action">
-                    跳过规则
+                    跳过
                     <button
                         onClick={this.handleAddPass}
                         className="btn-add-pink"

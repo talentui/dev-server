@@ -86,13 +86,6 @@ export const homeSpecialActions = {
             specialId
         };
     },
-    changeSpecialDirectMatch(directMatch, specialId) {
-        return {
-            type: constSpecial.CHANAGE_SPECIAL_DIRECT_MATCH,
-            directMatch,
-            specialId
-        }
-    },
     deleteSpecialConfig(specialId) {
         return { type: constSpecial.DELETE_A_SPECIAL, specialId };
     },

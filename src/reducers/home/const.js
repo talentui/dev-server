@@ -27,7 +27,6 @@ export const constSpecial = {
     CHANAGE_SPECIAL_REFERER: "change the referer of the special config",
     DELETE_A_SPECIAL: "delete a special config",
     TOGGLE_SPECIAL_ENABLED: "toggle the state of the special config",
-    CHANAGE_SPECIAL_DIRECT_MATCH: 'change the direct match of the special config'
 };
 
 export const constTarget = {
@@ -50,3 +49,13 @@ export const constPass = {
     TOGGLE_PASS_ENABLED: "toggle the enabled state of a pass config",
     CHANAGE_PASS_REG: "change the reg of a pass config"
 };
+
+
+export const constDirect = {
+    ADD_DIRECT_CONFIG: "add a direct config",
+    DELETE_DIRECT_CONFIG: "delete a direct config",
+    TOGGLE_DIRECT_ENABLED: "toggle the enable state of a direct config",
+    CHANAGE_DIRECT_REG: "change the reg of a direct config",
+    CHANGE_DIRECT_NAME: "change the name of the direct config",
+    CHANGE_DIRECT_TARGET: "change the target of the config"
+}

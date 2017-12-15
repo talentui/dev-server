@@ -1,7 +1,6 @@
 import combineImmutableReducers from "@talentui/biz-helper/lib/utils/combineImmutableReducers";
 import {
     GET_CONFIG_FROM_SERVER,
-    SAVE_CONFIG_TO_SERVER,
     SAVE_CONFIG_SUCCESS,
     CLEAR_SAVING_STATUS
 } from "./const";
@@ -10,6 +9,7 @@ import special from "./special";
 import target from "./target";
 import talentui from "./talentui";
 import pass from "./pass";
+import direct from './direct';
 
 export default function(state, action) {
     switch (action.type) {
@@ -28,6 +28,7 @@ export default function(state, action) {
         special,
         target,
         talentui,
-        pass
+        pass,
+        direct
     })(state, action);
 }

@@ -7,6 +7,7 @@ import Target from "./target";
 import Save from "./save";
 import TalentUI from "./talentui";
 import Pass from "./pass";
+import Direct from './direct';
 
 @connect()
 export default class Config extends Component {
@@ -25,6 +26,7 @@ export default class Config extends Component {
             <Target key="target" />,
             <TalentUI key="talentui" />,
             <Special key="special" />,
+            <Direct key='direct'/>,
             <Pass key="pass" />,
             <div key="download">
                 <button onClick={this.downloadCert} className='download'>下载ssl证书</button>

@@ -38,10 +38,6 @@ export default function(state = initState, action) {
             let path = [specialIndex, "enabled"];
             return state.setIn(path, !state.getIn(path));
         }
-        case constSpecial.CHANAGE_SPECIAL_DIRECT_MATCH: {
-            let path = [specialIndex, 'directMatch'];
-            return state.setIn(path, action.directMatch)
-        }
     }
 
     return state;

@@ -1,74 +1,137 @@
 const { getConfig } = require("./getConfig");
-const { talentuiReplacer } = require("./constants");
+const {
+    talentuiReplacer,
+    proxyDecision,
+    responseType
+} = require("./constants");
+const url = require("url");
 
-function getAllPort(product) {
-    return product.map(item => {
-        return item.port;
+function searchInPass(desciptions) {
+    let config = getConfig();
+    let { requestPath } = desciptions;
+    let matched = config.pass.find(item => {
+        if (!item.enabled) return false;
+        let reg = new RegExp(item.reg);
+        return reg.test(requestPath);
     });
+    if (matched) {
+        desciptions.decision = proxyDecision.pass;
+        desciptions.identifier = matched.name;
+        desciptions.responseTarget = `${desciptions.requestProtocol}://${
+            config.target.name
+        }`;
+        desciptions.responseType = responseType.remote;
+        desciptions.responsePath = requestPath;
+        desciptions.changeOrigin = false;
+        return true;
+    }
+    return false;
 }
 
-function searchInSpecial(special, url, req) {
-    let { headers: { referer: reqReferer } } = req;
-    let regx;
+function searchInDirect(desciptions) {
+    let { direct = [] } = getConfig();
+    let { requestPath } = desciptions;
+    let matched = direct.find(item => {
+        if (!item.enabled) return false;
+        return requestPath.indexOf(item.reg) !== -1;
+    });
+    if (matched) {
+        desciptions.responseType =
+            matched.target.indexOf("://") === -1
+                ? responseType.local
+                : responseType.remote;
+        desciptions.decision = proxyDecision.direct;
+        desciptions.identifier = matched.name;
+        if (desciptions.responseType === responseType.local) {
+            desciptions.responseTarget = "Local File System";
+            desciptions.responsePath = matched.target;
+        } else {
+            let oUrl = url.parse(matched.target);
+            desciptions.responseTarget = `${oUrl.protocol}//${oUrl.host}`;
+            desciptions.responsePath = oUrl.path;
+        }
+        return true;
+    }
+    return false;
+}
+
+function searchInSpecial(desciptions) {
+    let { requestPath, requestFrom } = desciptions;
+    let { special } = getConfig();
     let matched = special.find(item => {
-        let { reg, referer: configReferer, enabled } = item;
+        let { reg, referer, enabled } = item;
         if (!enabled) return false;
-        configReferer = configReferer.trim();
-        regx = new RegExp(reg);
-        let regMatched = regx.test(url);
-        if (reqReferer) {
-            return regMatched && reqReferer.indexOf(configReferer) !== -1;
+        referer = referer.trim();
+        let regx = new RegExp(reg);
+        let regMatched = regx.test(requestPath);
+        if (requestFrom && referer) {
+            return regMatched && requestFrom.indexOf(referer) !== -1;
         }
         return regMatched;
     });
     if (matched) {
-        return {
-            type: "special",
-            matched: Object.assign({}, matched, {
-                regx
-            })
-        };
+        let { reg, port = 3000, name } = matched;
+        desciptions.responseType = responseType.remote;
+        desciptions.decision = proxyDecision.special;
+        desciptions.identifier = name;
+        desciptions.responseTarget = `http://localhost:${port}`;
+        desciptions.responsePath = new RegExp(reg)
+            .exec(requestPath)
+            .slice(1)
+            .join("");
+        return true;
     }
+    return false;
 }
 
-function searchInTalentUI(talentui, url) {
-    let { template, projects } = talentui;
-    let regx;
+function searchInTalentUI(desciptions) {
+    let { requestPath } = desciptions;
+    let { talentui: { template, projects } } = getConfig();
     let matched = projects.find(project => {
         let { name, enabled } = project;
         if (!enabled) return false;
-        regx = new RegExp(template.replace(talentuiReplacer, name));
-        return regx.test(url);
+        let regx = new RegExp(template.replace(talentuiReplacer, name));
+        return regx.test(requestPath);
     });
-    if (!matched) return;
-    return {
-        type: "talentui",
-        matched: Object.assign({}, matched, {
-            regx
-        })
-    };
-}
-
-function urlShouldPass(pass, url) {
-    return pass.find(item => {
-        if (!item.enabled) return false;
-        let reg = new RegExp(item.reg);
-        return reg.test(url);
-    });
+    if (matched) {
+        desciptions.responseType = responseType.remote;
+        desciptions.decision = proxyDecision.talentui;
+        desciptions.identifier = matched.name;
+        desciptions.responseTarget = `http://localhost:${matched.port}`;
+        desciptions.responsePath = new RegExp(
+            template.replace(talentuiReplacer, matched.name)
+        )
+            .exec(requestPath)
+            .slice(1)
+            .join("");
+        return true;
+    }
+    return false;
 }
 
 module.exports = function findMatchConfig(req) {
-    let { baseUrl: url } = req;
-    let notfound = {
-        type: "notfound"
+    let desciptions = {
+        requestFrom: req.headers.referer || "",
+        requestPath: req.baseUrl,
+        requestHost: req.host,
+        requestProtocol: req.protocol,
+        changeOrigin: true
     };
-    let config = getConfig();
-    let { pass } = config;
-    if (urlShouldPass(pass, url)) return notfound;
-    let { talentui } = config;
-    let matchedTalentui = searchInTalentUI(talentui, url);
-    if (matchedTalentui) return matchedTalentui;
-    let searchSpecial = searchInSpecial(config.special, url, req);
-    if (searchSpecial) return searchSpecial;
-    return notfound;
+    // 依次匹配，是否请求是否匹配到“跳过”规则
+    if (
+        searchInPass(desciptions) ||
+        searchInDirect(desciptions) ||
+        searchInSpecial(desciptions) ||
+        searchInTalentUI(desciptions)
+    ) {
+    } else {
+        desciptions.responseType = responseType.remote;
+        desciptions.changeOrigin = false;
+        desciptions.decision = proxyDecision.notMatched;
+        desciptions.responseTarget = `${desciptions.requestProtocol}://${
+            getConfig().target.ip
+        }`;
+        desciptions.responsePath = desciptions.requestPath;
+    }
+    return desciptions;
 };
