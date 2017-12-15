@@ -43,8 +43,8 @@ io.on("connection", function(socket) {
     socket.emit(
         "log",
         createLog({
-            reason: "建立链接",
-            resType: "connect"
+            decision: "建立链接",
+            type: "connect"
         })
     );
 });

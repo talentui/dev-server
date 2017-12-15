@@ -102,6 +102,26 @@ header {
             min-height: 200px;
             max-height: 500px;
             border-radius: 2px;
+            .log-connected {
+                .c {
+                    color: greenyellow;
+                }
+            }
+            .log-line-num {
+                width: 15px;
+                text-align: right;
+                padding-right: 10px;
+                color: #aaa;
+            }
+            .log-content {
+                .log-label {
+                    font-weight: bold;
+                    padding-left: 10px;
+                }
+                span {
+                    display: inline-block;
+                }
+            }
         }
     }
     .save-config {

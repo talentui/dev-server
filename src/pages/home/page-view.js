@@ -7,7 +7,7 @@ const tabs = ["config", "logger"];
 
 export default class Home extends Component {
     state = {
-        currentTab: tabs[0]
+        currentTab: tabs[1]
     };
 
     switchTab = index => () => {
@@ -45,7 +45,7 @@ export default class Home extends Component {
                             this.state.currentTab === tabs[0] ? "block" : "none"
                     }}
                 >
-                    <Config />;
+                    <Config />
                 </div>
                 <div
                     style={{

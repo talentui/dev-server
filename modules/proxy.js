@@ -1,23 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const httpProxyMiddleware = require("http-proxy-middleware");
 const httpProxy = require("http-proxy");
 const proxy = httpProxy.createProxyServer({});
-const url = require("url");
 const fs = require("fs");
-const path = require("path");
-const { getConfig } = require("./getConfig");
 const { socketio, roomLog, msgLog, responseType } = require("./constants");
 const createLog = require("./createLog");
 
 const findMatchConfig = require("./findMatchConfig");
-
-function rewritePath(regx, req) {
-    return regx
-        .exec(req.baseUrl)
-        .slice(1)
-        .join("");
-}
 
 router.use("*", (req, res, next) => {
     let io = req.app.get(socketio).to(roomLog);

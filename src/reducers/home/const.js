@@ -47,7 +47,8 @@ export const constPass = {
     ADD_PASS_CONFIG: "add a pass config",
     DELETE_PASS_CONFIG: "delete a pass config",
     TOGGLE_PASS_ENABLED: "toggle the enabled state of a pass config",
-    CHANAGE_PASS_REG: "change the reg of a pass config"
+    CHANAGE_PASS_REG: "change the reg of a pass config",
+    CHANGE_PASS_NAME: 'change the name of the pass config'
 };
 
 

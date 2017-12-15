@@ -69,12 +69,12 @@ export default class Talentui extends Component {
         return (
             <section className="talentui-config config-section">
                 <h3 className="server-action">
-                    北森 TalentUI 项目快速配置{" "}
+                    TalentUI
                     <button
                         onClick={this.handleAddProject}
                         className="btn-add-pink"
                     >
-                        添加项目
+                        添加
                     </button>
                 </h3>
 

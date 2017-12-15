@@ -18,7 +18,7 @@ function searchInPass(desciptions) {
         desciptions.decision = proxyDecision.pass;
         desciptions.identifier = matched.name;
         desciptions.responseTarget = `${desciptions.requestProtocol}://${
-            config.target.name
+            config.target.ip
         }`;
         desciptions.responseType = responseType.remote;
         desciptions.responsePath = requestPath;
@@ -111,6 +111,7 @@ function searchInTalentUI(desciptions) {
 
 module.exports = function findMatchConfig(req) {
     let desciptions = {
+        type: 'proxy',
         requestFrom: req.headers.referer || "",
         requestPath: req.baseUrl,
         requestHost: req.host,

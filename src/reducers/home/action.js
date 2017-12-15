@@ -151,34 +151,3 @@ export const homeTalentuiActions = {
         return { type: constTalentUI.DELETE_TALENTUI_PROJECT, projectId };
     }
 };
-
-export const homePassActions = {
-    addPass: function() {
-        return {
-            type: constPass.ADD_PASS_CONFIG,
-            pass: fromJS({
-                id: v1(),
-                reg: ""
-            })
-        };
-    },
-    deletePass: function(passId) {
-        return {
-            type: constPass.DELETE_PASS_CONFIG,
-            passId
-        };
-    },
-    changePassReg: function(passId, reg) {
-        return {
-            type: constPass.CHANAGE_PASS_REG,
-            passId,
-            reg
-        };
-    },
-    toggleEnabled: function(passId) {
-        return {
-            type: constPass.TOGGLE_PASS_ENABLED,
-            passId
-        };
-    }
-};

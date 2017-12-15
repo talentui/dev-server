@@ -3,5 +3,5 @@ import logger from 'redux-logger'
 
 export default {
     el: 'talentuiDevServer',
-    middlewares: [logger,ReduxThunk]
+    middlewares: [ReduxThunk]
 }

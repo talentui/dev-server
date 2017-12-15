@@ -24,10 +24,23 @@ export default class Logger extends Component {
 
     renderLogs(){
         return this.state.logs.map((log, index) => {
-            return <div className={`log-item-${log.resType}`} key={log.id}>
-            {
-                `来自 ${log.reqFrom || '浏览器'} 的资源请求 ${log.reqPath} => 匹配结果 ${log.reason} => 地址： ${log.resFrom}/${log.resPath}`
-            }</div>
+            let {type} = log;
+            if(type==='connect'){
+                return <div className='log-connected log-content' key={log.id}>
+                    <span className='log-line-num'>{index}</span><span className='c'>{log.decision}</span>
+                </div>
+            }else if(type==='proxy'){
+                return <div className='log-proxy log-content' key={log.id}>
+                    <span className='log-line-num'>{index}</span>
+                    <span>{log.decision}</span>
+                    <span className='log-label'>标识：</span>
+                    <span>{log.identifier}</span>
+                    <span className='log-label'>原始请求地址：</span>
+                    <span>{log.requestPath}</span>
+                    <span className='log-label'>实际响应地址：</span>
+                    <span>{`${log.responseTarget}/${log.responsePath}`}</span>
+                </div>
+            }
         })
     }
 

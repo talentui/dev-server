@@ -7,17 +7,16 @@ import Target from "./target";
 import Save from "./save";
 import TalentUI from "./talentui";
 import Pass from "./pass";
-import Direct from './direct';
+import Direct from "./direct";
 
 @connect()
 export default class Config extends Component {
-    
     componentWillMount() {
         this.props.dispatch(getData());
     }
 
-    downloadCert(){
-        window.open('/api/download/cert')
+    downloadCert() {
+        window.open("/api/download/cert");
     }
 
     render() {
@@ -26,11 +25,13 @@ export default class Config extends Component {
             <Target key="target" />,
             <TalentUI key="talentui" />,
             <Special key="special" />,
-            <Direct key='direct'/>,
+            <Direct key="direct" />,
             <Pass key="pass" />,
             <div key="download">
-                <button onClick={this.downloadCert} className='download'>下载ssl证书</button>
-            </div>,
+                <button onClick={this.downloadCert} className="download">
+                    下载ssl证书
+                </button>
+            </div>
         ];
     }
 }
