@@ -43,7 +43,7 @@ export default class Special extends Component {
 
     handleChangeName = specialId => ({ target }) => {
         let { changeSpecialName } = this.props;
-        changeSpecialName(target.value.trim(), specialId);
+        changeSpecialName(target.value, specialId);
     };
 
     handleChangePort = specialId => ({ target }) => {
@@ -67,6 +67,14 @@ export default class Special extends Component {
     };
 
     renderConfigList() {
+        let {data} = this.props;
+        if(!data || !data.size) {
+            return <tr>
+                <td colSpan='6' className='no-config'>
+                    木有任何配置
+                </td>
+            </tr>
+        }
         return this.props.data.map(item => {
             let id = item.get("id");
             return (
@@ -96,7 +104,7 @@ export default class Special extends Component {
                         />
                     </td>
                     <td>
-                        <input
+                        <input className='ipt-type-reg'
                             type="text"
                             value={item.get("reg")}
                             onChange={this.handleChangeReg(id)}
@@ -142,7 +150,7 @@ export default class Special extends Component {
                     <thead>
                         <tr>
                             <th style={tableWidth.t1}>
-                                <input type="checkbox" />
+                                状态
                             </th>
                             <th style={tableWidth.t2}>标识</th>
                             <th style={tableWidth.t3}>端口</th>

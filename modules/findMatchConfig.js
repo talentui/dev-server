@@ -11,8 +11,9 @@ function searchInPass(desciptions) {
     let { requestPath } = desciptions;
     let matched = config.pass.find(item => {
         if (!item.enabled) return false;
-        let reg = new RegExp(item.reg);
-        return reg.test(requestPath);
+        // let reg = new RegExp(item.reg);
+        // return reg.test(requestPath);
+        return requestPath.indexOf(item.reg) !== -1;
     });
     if (matched) {
         desciptions.decision = proxyDecision.pass;

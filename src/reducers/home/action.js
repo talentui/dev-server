@@ -21,7 +21,8 @@ export function getData() {
             .then(function(config) {
                 dispatch({
                     type: GET_CONFIG_FROM_SERVER,
-                    home: fromJS(config)
+                    home: fromJS(config),
+                    noSave: true
                 });
             });
     };
@@ -51,7 +52,8 @@ export function saveData() {
                 let { status } = res;
                 dispatch({
                     type: SAVE_CONFIG_SUCCESS,
-                    status
+                    status,
+                    noSave: true
                 });
             });
     };

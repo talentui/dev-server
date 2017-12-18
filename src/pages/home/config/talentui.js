@@ -8,6 +8,10 @@ import { homeTalentuiActions } from "&/reducers/home/action";
     mapActionCreators(homeTalentuiActions)
 )
 export default class Talentui extends Component {
+    state = {
+        showTemplate: false
+    };
+
     handleChangeTemplate = ({ target }) => {
         this.props.changeTemplate(target.value);
     };
@@ -24,16 +28,25 @@ export default class Talentui extends Component {
         this.props.addProject();
     };
 
-    handleChangeEnabled = (projectId) => () => {
-        this.props.toggleEnabled(projectId)
-    }
+    handleChangeEnabled = projectId => () => {
+        this.props.toggleEnabled(projectId);
+    };
 
-    handleDeleteProject = (projectId) => () => {
-        this.props.deleteTalentuiProject(projectId)
-    }
+    handleDeleteProject = projectId => () => {
+        this.props.deleteTalentuiProject(projectId);
+    };
+
+    toggleTemplate = () => {
+        this.setState({
+            showTemplate: !this.state.showTemplate
+        });
+    };
 
     renderProjectList() {
         let { data } = this.props;
+        if(!data || !data.size || !data.get('projects').size) {
+            return <div className='no-config'>木有任何配置</div>
+        }
         return data.get("projects").map(item => {
             let id = item.get("id");
             return (
@@ -59,7 +72,12 @@ export default class Talentui extends Component {
                         onChange={this.handleChangeProjectPort(id)}
                         className="config-input-left"
                     />
-                    <button className="delete" onClick={this.handleDeleteProject(id)}>删除</button>
+                    <button
+                        className="delete"
+                        onClick={this.handleDeleteProject(id)}
+                    >
+                        删除
+                    </button>
                 </div>
             );
         });
@@ -79,14 +97,28 @@ export default class Talentui extends Component {
                 </h3>
 
                 <div>{this.renderProjectList()}</div>
-                <div className="talentui-template">
+                <div
+                    className="talentui-template"
+                    style={{
+                        display: this.state.showTemplate ? "block" : "none"
+                    }}
+                >
                     <input
                         type="text"
                         value={this.props.data.get("template")}
                         onChange={this.handleChangeTemplate}
                         placeholder="配置模板"
-                        className="config-input-right wide"
+                        className="config-input-right wide ipt-type-reg"
                     />
+                </div>
+                <div
+                    style={{
+                        display: this.state.showTemplate ? "none" : "block"
+                    }}
+                >
+                    <a href="javascript:;" onClick={this.toggleTemplate}>
+                        编辑模板
+                    </a>
                 </div>
             </section>
         );

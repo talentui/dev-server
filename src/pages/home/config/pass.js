@@ -4,7 +4,7 @@ import { mapActionCreators } from "&/helpers/easy-import";
 import { actions } from "&/reducers/home/pass";
 const tableWidth = {
     t1: {
-        width: "30px"
+        width: "40px"
     },
     t2: {
         width: "80px"
@@ -39,6 +39,14 @@ export default class Pass extends Component {
     };
 
     renderPassList() {
+        let {data} = this.props;
+        if(!data || !data.size) {
+            return <tr>
+                <td colSpan='4' className='no-config'>
+                    木有任何配置
+                </td>
+            </tr>
+        }
         return this.props.data.map(item => {
             let id = item.get("id");
             return (
@@ -60,11 +68,11 @@ export default class Pass extends Component {
                         />
                     </td>
                     <td>
-                        <input
+                        <input className='ipt-type-str'
                             type="text"
                             value={item.get("reg")}
                             onChange={this.handleChangeReg(id)}
-                            placeholder="配置名称"
+                            placeholder="配置路径"
                         />
                     </td>
                     <td>
@@ -95,7 +103,7 @@ export default class Pass extends Component {
                 <table>
                     <thead>
                         <tr>
-                            <th style={tableWidth.t1} />
+                            <th style={tableWidth.t1} >状态</th>
                             <th style={tableWidth.t2}>标识</th>
                             <th>请求地址</th>
                             <th style={tableWidth.t3}>操作</th>

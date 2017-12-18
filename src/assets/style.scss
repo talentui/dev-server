@@ -19,6 +19,12 @@ input {
     }
 }
 
+a {
+    color: darkcyan;
+    font-weight: 200;
+    text-decoration: none;
+}
+
 button {
     border-radius: 2px;
     padding: 5px 15px;
@@ -68,6 +74,15 @@ header {
     margin: $distances;
     input[type="checkbox"] {
         margin-right: 10px;
+    }
+    .no-config{
+        color: #ccc;
+    }
+    .ipt-type-reg {
+        color: green
+    }
+    .ipt-type-str {
+        color: #777
     }
     .application {
         .tabs {
@@ -146,8 +161,8 @@ header {
         width: calc(100% - 300px);
     }
     input {
-        line-height: 24px;
-        font-size: 14px;
+        line-height: 20px;
+        font-size: 12px;
     }
     .target-config {
         .i + .i {

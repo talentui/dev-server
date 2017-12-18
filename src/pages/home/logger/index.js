@@ -35,7 +35,7 @@ export default class Logger extends Component {
                     <span>{log.decision}</span>
                     <span className='log-label'>标识：</span>
                     <span>{log.identifier}</span>
-                    <span className='log-label'>原始请求地址：</span>
+                    <span className='log-label'>请求资源路径：</span>
                     <span>{log.requestPath}</span>
                     <span className='log-label'>实际响应地址：</span>
                     <span>{`${log.responseTarget}/${log.responsePath}`}</span>

@@ -5,7 +5,7 @@ import { actions } from "&/reducers/home/direct.js";
 
 const tableWidth = {
     t1: {
-        width: "30px"
+        width: "40px"
     },
     t2: {
         width: "80px"
@@ -89,7 +89,7 @@ export default class Direct extends Component {
                         />
                     </td>
                     <td>
-                        <input
+                        <input className='ipt-type-str'
                             type="text"
                             value={item.get("reg")}
                             onChange={this.handleChangeReg(id)}
@@ -134,7 +134,7 @@ export default class Direct extends Component {
                     <thead>
                         <tr>
                             <th style={tableWidth.t1}>
-                                <input type="checkbox" />
+                                状态
                             </th>
                             <th style={tableWidth.t2}>标识</th>
                             <th>Request URL</th>
