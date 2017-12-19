@@ -60,3 +60,9 @@ export const constDirect = {
     CHANGE_DIRECT_NAME: "change the name of the direct config",
     CHANGE_DIRECT_TARGET: "change the target of the config"
 }
+
+export const constGroups = {
+    ADD_A_GROUP: 'add a group',
+    DELETE_A_GROUP: 'delete a group',
+    CHANAGE_GROUP_NAME: 'change the name of a group'
+}

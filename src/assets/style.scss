@@ -85,22 +85,23 @@ header {
         color: #777
     }
     .application {
+        margin-top: 40px;
         .tabs {
             overflow: hidden;
             padding: 0;
-            border-bottom: 1px solid #ccc;
+            border-bottom: 1px solid rgb(74, 191, 235);
             .tab {
                 float: left;
                 margin-right: 10px;
                 list-style: none;
-                padding: 1px 20px;
+                padding: 3px 20px 1px 20px;
                 a {
                     color: $fontColor;
                     font-size: 18px;
                     text-decoration: none;
                 }
                 &.cur {
-                    background-color: gray;
+                    background-color: rgb(74, 191, 235);
                     a {
                         color: white;
                     }
@@ -109,11 +110,11 @@ header {
         }
         .logger {
             background-color: black;
-            line-height: 18px;
+            line-height: 24px;
             font-weight: 200;
             font-size: 12px;
             padding: 10px;
-            color: white;
+            color: #ccc;
             min-height: 200px;
             max-height: 500px;
             border-radius: 2px;
@@ -173,8 +174,10 @@ header {
             width: 80px;
         }
     }
+    .download-ssl {
+        margin-top: 20px;
+    }
     .config-section {
-        margin-bottom: 50px;
         .server-action {
             margin-bottom: 15px;
             button {

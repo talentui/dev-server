@@ -22,31 +22,44 @@ export default class Logger extends Component {
         return socket;
     }
 
-    renderLogs(){
+    renderLogs() {
         return this.state.logs.map((log, index) => {
-            let {type} = log;
-            if(type==='connect'){
-                return <div className='log-connected log-content' key={log.id}>
-                    <span className='log-line-num'>{index}</span><span className='c'>{log.decision}</span>
-                </div>
-            }else if(type==='proxy'){
-                return <div className='log-proxy log-content' key={log.id}>
-                    <span className='log-line-num'>{index}</span>
-                    <span>{log.decision}</span>
-                    <span className='log-label'>标识：</span>
-                    <span>{log.identifier}</span>
-                    <span className='log-label'>请求资源路径：</span>
-                    <span>{log.requestPath}</span>
-                    <span className='log-label'>实际响应地址：</span>
-                    <span>{`${log.responseTarget}/${log.responsePath}`}</span>
-                </div>
+            let { type } = log;
+            if (type === "connect") {
+                return (
+                    <div className="log-connected log-content" key={log.id}>
+                        <span className="log-line-num">{index}</span>
+                        <span className="c">{log.decision}</span>
+                    </div>
+                );
+            } else if (type === "proxy") {
+                return (
+                    <div className="log-proxy log-content" key={log.id}>
+                        <span className="log-line-num">{index}</span>
+                        <span>{log.decision}</span>
+                        <span className="log-label">标识：</span>
+                        <span>{log.identifier}</span>
+                        <span className="log-label">请求资源路径：</span>
+                        <span>{log.requestPath}</span>
+                        <span className="log-label">实际响应地址：</span>
+                        <span>{`${log.responseTarget}/${
+                            log.responsePath
+                        }`}</span>
+                    </div>
+                );
             }
-        })
+        });
     }
 
     render() {
-        return <div className='logger'>
-            {this.renderLogs()}
-        </div>
+        let { show } = this.props;
+        return (
+            <div
+                className="logger"
+                style={{ display: show ? "block" : "none" }}
+            >
+                {this.renderLogs()}
+            </div>
+        );
     }
 }
