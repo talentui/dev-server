@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { getData } from "&/reducers/home/action";
+import { getData, switchTab } from "&/reducers/home/global";
 import Special from "./config/special";
 import Target from "./config/target";
 import TalentUI from "./config/talentui";
@@ -39,7 +39,9 @@ const tabs = [
 
 const tablogger = "logger";
 
-@connect()
+@connect(state => ({
+    currentTab: state.getIn(["home", "currentTab"] || "remote")
+}))
 export default class Home extends Component {
     state = {
         currentTab: "remote"
@@ -53,36 +55,34 @@ export default class Home extends Component {
         window.open("/api/download/cert");
     }
 
-    switchTab = key => () => {
-        this.setState({
-            currentTab: key
-        });
-    };
-
     renderTabItem({ key, name }) {
+        let { currentTab } = this.props;
         return (
-            <li
-                key={key}
-                className={`tab${this.state.currentTab === key ? " cur" : ""}`}
-            >
-                <a href="javascript:;" onClick={this.switchTab(key)}>
+            <li key={key} className={`tab${currentTab === key ? " cur" : ""}`}>
+                <a href="javascript:;" onClick={this.handleSwitchTab(key)}>
                     {name}
                 </a>
             </li>
         );
     }
 
+    handleSwitchTab = tab => () => {
+        this.props.dispatch(switchTab(tab));
+    };
+
     renderTabs() {
         return tabs.map(item => this.renderTabItem(item));
     }
 
     renderModule() {
-        let tab = tabs.find(item => item.key === this.state.currentTab);
+        let { currentTab } = this.props;
+        let tab = tabs.find(item => item.key === currentTab);
         if (tab) return React.createElement(tab.module);
         return null;
     }
 
     render() {
+        let { currentTab } = this.props;
         return (
             <div className="application">
                 <ul className="tabs">
@@ -93,8 +93,8 @@ export default class Home extends Component {
                     })}
                 </ul>
                 {this.renderModule()}
-                <Logger show={this.state.currentTab === tablogger} />
-                <div key="download" className='download-ssl'>
+                <Logger show={currentTab === tablogger} />
+                <div key="download" className="download-ssl">
                     <button onClick={this.downloadCert} className="download">
                         下载ssl证书
                     </button>

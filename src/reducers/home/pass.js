@@ -1,5 +1,7 @@
 import { List } from "immutable";
 import { constPass } from "./const";
+import { fromJS } from "immutable";
+import { v1 } from "uuid";
 
 const initState = List([]);
 

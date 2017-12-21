@@ -91,19 +91,18 @@ export default class Pass extends Component {
     render() {
         return (
             <section className="pass-config config-section">
-                <h3 className="server-action">
-                    跳过
+                <div className="server-action">
                     <button
                         onClick={this.handleAddPass}
                         className="btn-add-pink"
                     >
                         添加
                     </button>
-                </h3>
+                </div>
                 <table>
                     <thead>
                         <tr>
-                            <th style={tableWidth.t1} >状态</th>
+                            <th style={tableWidth.t1} ></th>
                             <th style={tableWidth.t2}>标识</th>
                             <th>请求地址</th>
                             <th style={tableWidth.t3}>操作</th>

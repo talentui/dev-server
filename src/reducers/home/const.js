@@ -1,12 +1,14 @@
-const DEFAULT_PROJ_CONFIG =
-    "/ux/upaas-portal/release/dist/((?:w+/)*)([a-zA-Z]+(?:-[a-z]+)*)+(?:-w+)?(.chunk)?(?:.min)?(.w{2,4})";
-const DEFAULT_DLL_CONFIG =
-    "^/ux/upaas/(?:@w+/[w-]+)/release/dist/([a-z-]+)-(?:d+.d+.d+)(?:.min)?(.js)";
+export const constGlobal = {
+    GET_CONFIG_FROM_SERVER: "get the config data from the sever",
+    SAVE_CONFIG_SUCCESS :  "save data to server success",
+    CLEAR_SAVING_STATUS : "remove the saving status from store",
+    ADD_GROUP: "add a group",
+    CHANAGE_GROUP_NAME: 'change the name of a group',
+    DELETE_GROUP: "delete a group",
+    CHANGE_TAB: "change the tab of the page"
+};
 
-export const SAVE_CONFIG_TO_SERVER = "save the config data to the server";
-export const GET_CONFIG_FROM_SERVER = "get the config data from the sever";
-export const SAVE_CONFIG_SUCCESS = "save data to server success";
-export const CLEAR_SAVING_STATUS = "remove the saving status from store";
+
 
 export const constProduct = {
     CHANGE_PROD_NAME: "change a product name",
@@ -27,6 +29,7 @@ export const constSpecial = {
     CHANAGE_SPECIAL_REFERER: "change the referer of the special config",
     DELETE_A_SPECIAL: "delete a special config",
     TOGGLE_SPECIAL_ENABLED: "toggle the state of the special config",
+    TOGGLE_GROUP_ITEM_ENABLED: 'the all the items\' select state under a group' 
 };
 
 export const constTarget = {
@@ -48,9 +51,8 @@ export const constPass = {
     DELETE_PASS_CONFIG: "delete a pass config",
     TOGGLE_PASS_ENABLED: "toggle the enabled state of a pass config",
     CHANAGE_PASS_REG: "change the reg of a pass config",
-    CHANGE_PASS_NAME: 'change the name of the pass config'
+    CHANGE_PASS_NAME: "change the name of the pass config"
 };
-
 
 export const constDirect = {
     ADD_DIRECT_CONFIG: "add a direct config",
@@ -59,10 +61,10 @@ export const constDirect = {
     CHANAGE_DIRECT_REG: "change the reg of a direct config",
     CHANGE_DIRECT_NAME: "change the name of the direct config",
     CHANGE_DIRECT_TARGET: "change the target of the config"
-}
+};
 
 export const constGroups = {
-    ADD_A_GROUP: 'add a group',
-    DELETE_A_GROUP: 'delete a group',
-    CHANAGE_GROUP_NAME: 'change the name of a group'
-}
+    ADD_A_GROUP: "add a group",
+    DELETE_A_GROUP: "delete a group",
+    CHANAGE_GROUP_NAME: "change the name of a group"
+};

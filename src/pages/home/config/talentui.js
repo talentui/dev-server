@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { mapActionCreators } from "&/helpers/easy-import";
-import { homeTalentuiActions } from "&/reducers/home/action";
+import { homeTalentuiActions } from "&/reducers/home/talentui";
 
 @connect(
     state => ({ data: state.getIn(["home", "talentui"]) }),
@@ -86,15 +86,14 @@ export default class Talentui extends Component {
     render() {
         return (
             <section className="talentui-config config-section">
-                <h3 className="server-action">
-                    TalentUI
+                <div className="server-action">
                     <button
                         onClick={this.handleAddProject}
                         className="btn-add-pink"
                     >
                         添加
                     </button>
-                </h3>
+                </div>
 
                 <div>{this.renderProjectList()}</div>
                 <div

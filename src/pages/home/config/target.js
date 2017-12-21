@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { mapActionCreators } from "&/helpers/easy-import";
-import { homeTargetActions } from "&/reducers/home/action";
+import { homeTargetActions } from "&/reducers/home/target";
 
 @connect(
     state => ({ data: state.getIn(["home", "target"]) }),

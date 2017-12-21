@@ -13,6 +13,46 @@ const initState = fromJS({
     ]
 });
 
+export const homeTalentuiActions = {
+    addProject: function() {
+        return {
+            type: constTalentUI.ADD_TALENTUI_PROJECT,
+            project: {
+                name: "",
+                port: "",
+                id: v1()
+            }
+        };
+    },
+    changeProjectName: function(name, projectId) {
+        return {
+            type: constTalentUI.CHANAGE_TALENTUI_PROJECT_NAME,
+            name,
+            projectId
+        };
+    },
+    changeProjectPort: function(port, projectId) {
+        return {
+            type: constTalentUI.CHANAGE_TALENTUI_PROJECT_PORT,
+            port,
+            projectId
+        };
+    },
+    changeTemplate: function(template) {
+        return {
+            type: constTalentUI.CHANAGE_TALENTUI_TEMPLATE,
+            template
+        };
+    },
+    toggleEnabled: function(projectId) {
+        return { type: constTalentUI.TOGGLE_TALENTUI_ENABLED, projectId };
+    },
+    deleteTalentuiProject: function(projectId) {
+        return { type: constTalentUI.DELETE_TALENTUI_PROJECT, projectId };
+    }
+};
+
+
 export default function(state = initState, action) {
     switch (action.type) {
         case constTalentUI.ADD_TALENTUI_PROJECT: {

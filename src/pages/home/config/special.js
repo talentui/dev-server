@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { mapActionCreators } from "&/helpers/easy-import";
-import { homeSpecialActions } from "&/reducers/home/action";
+import { homeSpecialActions } from "&/reducers/home/special";
+import { addGroup } from "&/reducers/home/global";
 
 const tableWidth = {
     t1: {
@@ -28,17 +29,24 @@ const tableWidth = {
 };
 
 @connect(state => {
-    return { data: state.getIn(["home", "special"]) };
+    return {
+        specialData: state.getIn(["home", "special"]),
+        groupData: state.getIn(["home", "groups", "special"])
+    };
 }, mapActionCreators(homeSpecialActions))
 export default class Special extends Component {
-    handleAddGlobal = () => {
+    state = {
+        currentEdit: ""
+    };
+
+    handleAddSpecial = groupId => () => {
         let { addSpecial } = this.props;
-        addSpecial();
+        addSpecial(groupId);
     };
 
     handleChangeReg = specialId => ({ target }) => {
         let { changeSpecialReg } = this.props;
-        changeSpecialReg(target.value.trim(), specialId);
+        changeSpecialReg(target.value, specialId);
     };
 
     handleChangeName = specialId => ({ target }) => {
@@ -47,11 +55,11 @@ export default class Special extends Component {
     };
 
     handleChangePort = specialId => ({ target }) => {
-        this.props.changeSpecialPort(target.value.trim(), specialId);
+        this.props.changeSpecialPort(target.value, specialId);
     };
 
     handleChangeReferer = specialId => ({ target }) => {
-        this.props.changeSpecialReferer(target.value.trim(), specialId);
+        this.props.changeSpecialReferer(target.value, specialId);
     };
 
     handleDeleteConfig = specialId => () => {
@@ -63,19 +71,56 @@ export default class Special extends Component {
     };
 
     handleChangeDirectMatch = specialId => ({ target }) => {
-        this.props.changeSpecialDirectMatch(target.value.trim(), specialId);
+        this.props.changeSpecialDirectMatch(target.value, specialId);
     };
 
-    renderConfigList() {
-        let {data} = this.props;
-        if(!data || !data.size) {
-            return <tr>
-                <td colSpan='6' className='no-config'>
-                    木有任何配置
-                </td>
-            </tr>
+    handleAddGroup = () => {
+        this.props.addGroup();
+    };
+
+    handleChangeGroupName = groupId => ({ target }) => {
+        this.props.changeGroupName(groupId, target.value);
+    };
+
+    handleDeleteGroup = groupId => () => {
+        this.props.deleteGroup(groupId);
+    };
+
+    handleToggleGroupEnabled = (groupId, groupIsDefault) => ({target}) => {
+        this.props.toggleGroupEnabled(groupId, groupIsDefault, target.checked)
+    }
+
+    setCurrentEdit = groupId => () => {
+        this.setState({
+            currentEdit: groupId
+        });
+    };
+
+    getGroupItem(group) {
+        let { specialData } = this.props;
+        let groupType = group.get("type");
+        let groupId = group.get("id");
+        return specialData.filter(special => {
+            let fromGroupId = special.get("groupId");
+            if (fromGroupId) {
+                return groupId === fromGroupId;
+            } else {
+                return groupType === "default";
+            }
+        });
+    }
+
+    renderItem(groupItems) {
+        if (!groupItems || !groupItems.size) {
+            return (
+                <tr>
+                    <td colSpan="6" className="no-config">
+                        木有任何配置
+                    </td>
+                </tr>
+            );
         }
-        return this.props.data.map(item => {
+        return groupItems.map(item => {
             let id = item.get("id");
             return (
                 <tr key={id} className="config-item">
@@ -104,7 +149,8 @@ export default class Special extends Component {
                         />
                     </td>
                     <td>
-                        <input className='ipt-type-reg'
+                        <input
+                            className="ipt-type-reg"
                             type="text"
                             value={item.get("reg")}
                             onChange={this.handleChangeReg(id)}
@@ -133,35 +179,94 @@ export default class Special extends Component {
         });
     }
 
+    renderGroup() {
+        let { groupData } = this.props;
+        return groupData.map(group => {
+            let id = group.get("id");
+            let groupIsDefault = group.get("type") === "default";
+            let groupItems = this.getGroupItem(group);
+            let itemUnabledIndex = groupItems.findIndex(
+                item => item.get("enabled") !== true
+            );
+            let elIptName = (
+                <input
+                    value={group.get("name")}
+                    readOnly={this.state.currentEdit !== id}
+                />
+            );
+            if (!groupIsDefault) {
+                elIptName = React.cloneElement(elIptName, {
+                    onDoubleClick: this.setCurrentEdit(id),
+                    onBlur: this.setCurrentEdit(""),
+                    onChange: this.handleChangeGroupName(id)
+                });
+            }
+            return (
+                <div key={id}>
+                    <h2 className="group-action">
+                        {elIptName}
+                        {group.get("type") !== "default" && (
+                            <a
+                                href="javascript:;"
+                                onClick={this.handleDeleteGroup(id)}
+                            >
+                                删除
+                            </a>
+                        )}
+                    </h2>
+                    <section className="special-config config-section">
+                        <div className="server-action">
+                            <button
+                                onClick={this.handleAddSpecial(id)}
+                                className="btn-add-pink"
+                            >
+                                添加
+                            </button>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style={tableWidth.t1}>
+                                        <input
+                                            type="checkbox"
+                                            checked={
+                                                groupItems.size > 0 &&
+                                                itemUnabledIndex === -1
+                                            }
+                                            onChange={this.handleToggleGroupEnabled(
+                                                id, groupIsDefault
+                                            )}
+                                        />
+                                    </th>
+                                    <th style={tableWidth.t2}>标识</th>
+                                    <th style={tableWidth.t3}>端口</th>
+                                    <th>规则</th>
+                                    <th style={tableWidth.t4}>引用地址过滤</th>
+                                    <th style={tableWidth.t7}>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>{this.renderItem(groupItems)}</tbody>
+                        </table>
+                    </section>
+                </div>
+            );
+        });
+    }
+
     render() {
+        let elAddGroup = (
+            <div>
+                <button className="btn-add-group" onClick={this.handleAddGroup}>
+                    添加分组
+                </button>
+            </div>
+        );
+
         return (
-            <section className="special-config config-section">
-                <h3 className="server-action">
-                    代理
-                    <button
-                        onClick={this.handleAddGlobal}
-                        className="btn-add-pink"
-                    >
-                        {" "}
-                        添加{" "}
-                    </button>
-                </h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th style={tableWidth.t1}>
-                                状态
-                            </th>
-                            <th style={tableWidth.t2}>标识</th>
-                            <th style={tableWidth.t3}>端口</th>
-                            <th>规则</th>
-                            <th style={tableWidth.t4}>引用地址过滤</th>
-                            <th style={tableWidth.t7}>操作</th>
-                        </tr>
-                    </thead>
-                    <tbody>{this.renderConfigList()}</tbody>
-                </table>
-            </section>
+            <div className="group-box">
+                {elAddGroup}
+                {this.renderGroup()}
+            </div>
         );
     }
 }

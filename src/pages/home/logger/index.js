@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import io from "socket.io-client";
 
+const reg = /\D/;
+
 export default class Logger extends Component {
     constructor(p, c) {
         super(p, c);
@@ -8,7 +10,8 @@ export default class Logger extends Component {
     }
 
     state = {
-        logs: []
+        logs: [],
+        len: 100
     };
 
     initSocket() {
@@ -16,11 +19,20 @@ export default class Logger extends Component {
         let socket = io.connect(origin);
         socket.on("log", log => {
             this.setState({
-                logs: [log, ...this.state.logs]
+                logs: [log, ...this.state.logs.slice(0, this.state.len)]
             });
         });
         return socket;
     }
+
+    changeLoggerLength = ({ target }) => {
+        let { value } = target;
+        if (!reg.test(value)) {
+            this.setState({
+                len: parseInt(value)
+            });
+        }
+    };
 
     renderLogs() {
         return this.state.logs.map((log, index) => {
@@ -54,11 +66,18 @@ export default class Logger extends Component {
     render() {
         let { show } = this.props;
         return (
-            <div
-                className="logger"
-                style={{ display: show ? "block" : "none" }}
-            >
-                {this.renderLogs()}
+            <div style={{ display: show ? "block" : "none" }}>
+                <div>
+                    <label> 日志最大数量：
+                    <input
+                        type="text"
+                        value={this.state.len}
+                        onChange={this.changeLoggerLength}
+                    />
+                    </label>
+                </div>
+                <br />
+                <div className="logger">{this.renderLogs()}</div>
             </div>
         );
     }

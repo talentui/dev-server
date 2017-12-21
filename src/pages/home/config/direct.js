@@ -39,16 +39,16 @@ export default class Direct extends Component {
 
     handleChangeReg = directId => ({ target }) => {
         let { changeReg } = this.props;
-        changeReg(directId, target.value.trim());
+        changeReg(directId, target.value);
     };
 
     handleChangeName = directId => ({ target }) => {
         let { changeName } = this.props;
-        changeName(directId, target.value.trim());
+        changeName(directId, target.value);
     };
 
     handleChangeTarget = directId => ({ target }) => {
-        this.props.changeTarget(directId, target.value.trim());
+        this.props.changeTarget(directId, target.value);
     };
 
     handleDeleteConfig = directId => () => {
@@ -121,21 +121,18 @@ export default class Direct extends Component {
     render() {
         return (
             <section className="direct-config config-section">
-                <h3 className="server-action">
-                    直配
+                <div className="server-action">
                     <button
                         onClick={this.handleAddGlobal}
                         className="btn-add-pink"
                     >
                         添加
                     </button>
-                </h3>
+                </div>
                 <table>
                     <thead>
                         <tr>
-                            <th style={tableWidth.t1}>
-                                状态
-                            </th>
+                            <th style={tableWidth.t1} />
                             <th style={tableWidth.t2}>标识</th>
                             <th>Request URL</th>
                             <th>目标</th>

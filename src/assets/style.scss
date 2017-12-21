@@ -84,6 +84,50 @@ header {
     .ipt-type-str {
         color: #777
     }
+
+    button.btn-add-pink {
+        background-color:rgb(242, 141, 73);
+        color: white;
+        cursor: pointer;
+        font-size: 12px;
+    }
+    button.btn-add-group {
+        background-color: rgb(56, 186, 114);
+        color: white;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    input:read-only {
+        border: none;
+        line-height: 24px;
+        font-size: 18px;
+    }
+    
+
+    .group-action {
+        a {
+            display: none;
+            font-size: 12px;
+            line-height: 18px;
+        }
+        &:hover a {
+            display: inline
+        }
+        input {
+            line-height: 22px;
+            font-size: 16px;
+        }
+    }
+
+
+
+    .group-box {
+        .config-section {
+            margin-left: 20px;
+        }
+    }
+
     .application {
         margin-top: 40px;
         .tabs {
@@ -110,13 +154,13 @@ header {
         }
         .logger {
             background-color: black;
+            overflow-y: auto;
             line-height: 24px;
             font-weight: 200;
             font-size: 12px;
             padding: 10px;
             color: #ccc;
             min-height: 200px;
-            max-height: 500px;
             border-radius: 2px;
             .log-connected {
                 .c {
@@ -180,24 +224,10 @@ header {
     .config-section {
         .server-action {
             margin-bottom: 15px;
-            button {
-                cursor: pointer;
-                background-color: rgb(185, 204, 79);
-                font-size: 16px;
-                color: white;
-            }
         }
 
         .config-input-left + .config-input-left {
             margin-left: 10px;
-        }
-
-        button.btn-add-pink {
-            margin-left: 20px;
-            background-color: rgb(242, 141, 73);
-            color: white;
-            cursor: pointer;
-            font-size: 12px;
         }
     }
 
@@ -228,6 +258,9 @@ header {
         width: calc(100% - 20px);
         th {
             text-align: left;
+        }
+        td {
+            height: 32px;
         }
         input[type="text"] {
             width: calc(100% - 20px);
