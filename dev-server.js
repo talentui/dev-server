@@ -25,8 +25,8 @@ app.use(proxy);
 const httpServer = http.createServer(app);
 const httpsServer = https.createServer(
     {
-        key: fs.readFileSync(path.join(__dirname, "./ssl/key.pem")),
-        cert: fs.readFileSync(path.join(__dirname, "./ssl/cert.pem")),
+        key: fs.readFileSync(path.join(__dirname, "./ssl/beisen.com.key")),
+        cert: fs.readFileSync(path.join(__dirname, "./ssl/beisen.com.pem")),
         passphrase: "talentui"
     },
     app

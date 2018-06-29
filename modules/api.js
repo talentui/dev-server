@@ -11,7 +11,7 @@ router.get('/get', (req, res, next) => {
 })
 
 router.get('/download/cert', (req, res, next) => {
-    res.download(path.resolve(__dirname, '../ssl/cert.pem'))
+    res.download(path.resolve(__dirname, '../ssl/beisen.com.root.crt'))
 });
 
 router.post('/save', (req, res, next) => {
